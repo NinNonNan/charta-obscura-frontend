@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('anagrafica-form');
     const submitBtn = form.querySelector('button[type="submit"]');
     const formResponse = document.getElementById('form-response');
+    const formInner = form.querySelector('div'); // Contenitore interno dei campi del form
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -58,9 +59,19 @@ document.addEventListener('DOMContentLoaded', () => {
             // Simuleremo una risposta positiva
             const urlCartella = 'https://drive.google.com/drive/folders/abcdefg12345';
             setTimeout(() => {
-                formResponse.innerHTML = `<p class="success">Iscrizione completata! Accedi alla tua cartella personale: <br><a href="${urlCartella}" target="_blank">${urlCartella}</a></p>`;
-                form.reset();
-                submitBtn.disabled = false;
+                // Rimuovi tutti i campi del form, eccetto il titolo e il sottotitolo
+                const formElements = form.querySelectorAll('label, input, textarea, button');
+                formElements.forEach(el => el.remove());
+                
+                // Aggiorna il contenuto di form-response per mostrare il messaggio di successo
+                const successMsg = `
+                    <div style="text-align: center; padding: 2rem; color: #065f46; background-color: #ecfdf5; border: 1px solid #065f46;">
+                        <p style="font-size: 1.2rem; margin: 0;">Iscrizione completata con successo!</p>
+                        <p style="font-size: 1rem; margin-top: 1rem;">Accedi alla tua cartella personale: <br><a href="${urlCartella}" target="_blank">${urlCartella}</a></p>
+                    </div>
+                `;
+                formResponse.innerHTML = successMsg;
+
             }, 1500);
 
         } catch (error) {
