@@ -52,4 +52,4 @@ Per avviare lo sviluppo locale, assicurati di avere:
 ---
 ### Contatti
 
-* Progetto di **[Il tuo nome/username di GitHub]**
+* Progetto di **NinNonNan**
