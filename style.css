@@ -1,6 +1,6 @@
 /* Stili globali e sfondo */
 :root {
-  --page-bg: #4b4b4b; /* Non più usato per il body, ma mantenuto per chiarezza */
+  --page-bg: #4b4b4b; 
   --form-bg: #fef3c7;
   --text-dark: #2b2b2b;
   --gold: #d4af37;
@@ -19,16 +19,15 @@ html, body {
 
 body {
   font-family: 'Cinzel', serif;
-  /* NUOVO SFONDO EFFETTO LEGNO CON IMMAGINE */
-  background-color: #3e2723; /* Colore di riserva in caso l'immagine non si carichi */
-  background-image: url('https://www.transparenttextures.com/patterns/black-wood.png');
-  /* Assicura che l'immagine si ripeta per coprire tutta la pagina */
-  background-repeat: repeat; 
-  /* FINE NUOVO SFONDO */
   color: #f1e6c9;
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  /* Sfondo con texture di legno chiaro */
+  background-color: #6a493a;
+  background-image: url('https://assets.codepen.io/416221/light_wood.jpeg');
+  background-size: cover;
+  background-position: center center;
 }
 
 /* Header Fisso */
@@ -222,4 +221,27 @@ button:hover {
   label { font-size: 0.8rem; margin-top: 0.7rem; }
   input, select, textarea { font-size: 0.85rem; padding: 0.3rem; margin: 0.1rem 0 0 0; }
   button { width: 100%; font-size: 0.9rem; padding: 0.6rem; margin-top: 1.5rem; }
+}
+
+/* Modalità scura - Adattamento al tuo tema */
+@media screen and (prefers-color-scheme: dark) {
+  body {
+    background-image: url('https://assets.codepen.io/416221/dark_wood.jpeg');
+    background-size: cover;
+    color: #c58b50; /* Un colore che si abbina al legno scuro */
+  }
+
+  .form-container {
+    background: #4a2818;
+    color: #fef3c7;
+  }
+
+  h1, h2, label {
+    color: #fef3c7;
+  }
+
+  input, select, textarea {
+    background: #fdfcf7;
+    color: #2b2b2b;
+  }
 }
