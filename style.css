@@ -23,10 +23,14 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  /* NUOVO SFONDO ART DECO */
-  background-color: #3e2723; /* Un marrone scuro e caldo */
-  background-image: url('https://www.transparenttextures.com/patterns/art-deco.png');
-  background-repeat: repeat;
+  /* NUOVO SFONDO ART DECO IN CSS PURO */
+  background-color: #3e2723;
+  background-image: repeating-conic-gradient(
+    from 0deg,
+    #5c4a37 0% 10%,
+    transparent 10% 20%
+  );
+  background-size: 80px 80px;
   /* FINE NUOVO SFONDO */
 }
 
@@ -226,8 +230,12 @@ button:hover {
 /* Modalità scura */
 @media screen and (prefers-color-scheme: dark) {
   body {
-    background-image: url('https://www.transparenttextures.com/patterns/dark-wood.png');
-    background-size: cover;
-    background-position: center center;
+    background-color: #1a1a1a;
+    background-image: repeating-conic-gradient(
+      from 0deg,
+      #333 0% 10%,
+      transparent 10% 20%
+    );
+    background-size: 80px 80px;
   }
 }
