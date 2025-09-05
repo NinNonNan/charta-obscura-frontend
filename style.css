@@ -1,12 +1,4 @@
-/* ===== Stili globali e reset ===== */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* ===== Stili del corpo della pagina (body) ===== */
+/* ===== Stili di base del progetto (sfondo, font, colori) ===== */
 body, html {
     font-family: 'Cinzel', serif; /* Font elegante anni '20 */
     background: #111; /* Sfondo scuro */
@@ -14,360 +6,118 @@ body, html {
     height: 100%;
 }
 
-/* ===== Layout principale per desktop ===== */
-.main-container {
-    display: flex;
+* { box-sizing: border-box; }
+body {
+    margin: 0;
     min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
 }
 
-/* ===== Contenitore per il form di iscrizione (lato mobile) ===== */
-.form-container-mobile {
-    display: none; /* Nascosto su desktop */
-}
-
-/* ===== Stile per il layout fisso dell'header (Dashboard) ===== */
-.fixed-header {
-    position: fixed;
-    top: 0;
-    left: 0;
+/* Container esterno con bordo e box-shadow */
+.outer {
     width: 100%;
-    background: #111;
-    padding: 15px 0;
-    border-bottom: 2px solid #d4af37;
-    z-index: 1000;
-    text-align: center;
+    max-width: 840px;
+    padding: 2rem;
+    background: #1c1c1c; /* Sfondo del container del form, leggermente diverso */
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
-.dashboard-content {
-    padding-top: 100px;
-    padding-bottom: 50px;
+/* Stili del form: ora usiamo il layout pulito che hai fornito */
+form {
     width: 100%;
+    max-width: 560px;
+    background: #fef3c7; /* Sfondo del form, come hai richiesto */
+    padding: 1.25rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    border: 1px solid rgba(0,0,0,0.03);
+    color: #0f172a; /* Colore testo per il form chiaro */
 }
 
-/* ===== Titoli principali ===== */
 h1 {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 2.5em;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-    color: #d4af37;
-    border-bottom: 3px solid #d4af37;
-    display: inline-block;
-    padding: 0 20px 10px 20px;
+    margin: 0;
+    font-family: 'Dancing Script', cursive;
+    font-size: 3em;
+    color: #d4af37; /* Oro per i titoli */
+}
+p.lead {
+    margin: 0;
+    color: #6b7280;
+    font-size: 1em;
+    margin-top: 0.5rem;
 }
 
-h2 {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 1.8em;
-    letter-spacing: 1px;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    color: #d4af37;
-    text-align: center;
+label {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+    color: #0f172a; /* Testo scuro per le label */
 }
+input[type="text"],
+input[type="date"],
+input[type="email"],
+select,
+textarea {
+    padding: 0.65rem 0.85rem;
+    border: 1px solid rgba(15, 23, 42, 0.08); /* Bordo chiaro */
+    border-radius: 8px;
+    font-size: 0.95rem;
+    width: 100%;
+    background: transparent; /* Sfondo trasparente per gli input */
+    color: #0f172a; /* Testo scuro */
+    font-family: inherit;
+}
+textarea { min-height: 120px; resize: vertical; }
 
-/* ===== Pulsanti ===== */
+.row { display: flex; gap: 0.75rem; }
+.half { flex: 1; }
+
+.actions { display: flex; justify-content: flex-end; }
 button {
-    display: inline-block;
-    margin: 15px;
-    padding: 12px 20px;
-    font-size: 16px;
-    background: transparent;
-    color: #f1e6c9;
-    border: 2px solid #d4af37;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    background: #2563eb; /* Colore accento (blu) per i pulsanti */
+    color: white; /* Testo bianco */
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    border: 0;
+    font-weight: 600;
     cursor: pointer;
+    text-transform: uppercase;
     transition: all 0.3s ease;
 }
+button:hover { background: #1d4ed8; } /* Blu più scuro al passaggio del mouse */
+button[aria-busy="true"] { opacity: 0.7; cursor: wait; }
 
-button:hover {
-    background: #d4af37;
-    color: #111;
-}
-
-/* ===== Output messaggi ===== */
-#output {
-    margin-top: 25px;
-    font-weight: bold;
-    font-size: 1.2em;
-    color: #4caf50;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* ===== Box dati, partecipanti e lettere ===== */
-#data-box,
-.company-group {
-    border: 2px solid #d4af37;
-    margin-bottom: 25px;
-    padding: 15px 20px;
-    background: #1c1c1c;
-    box-shadow: 0 0 8px rgba(212,175,55,0.6);
-    text-align: left;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Cinzel', serif;
-}
-
-#data-box {
-    font-size: 1.2em;
-    text-align: center;
-    letter-spacing: 1px;
-}
-
-/* ===== Box partecipanti e lettere ===== */
-.company-group h3 {
-    margin: 0 0 10px;
-    font-size: 1.5em;
-    color: #d4af37;
-    text-align: center;
-    border-bottom: 1px solid #d4af37;
-    padding-bottom: 5px;
-}
-
-.company-group ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.company-group li {
-    padding: 5px 0;
-    border-bottom: 1px dashed #555;
-}
-
-.company-group li:last-child {
-    border-bottom: none;
-}
-
-/* ===== Link all’interno dei box con effetto aura ===== */
-.company-group a {
-    color: #f1e6c9;
-    text-decoration: none;
-    transition: all 0.3s;
-    text-shadow: 
-        0 0 2px #d4af37,
-        0 0 4px #d4af37,
-        0 0 6px #d4af37,
-        0 0 8px #d4af37;
-}
-
-.company-group a:hover {
-    color: #fff;
-    text-shadow: 
-        0 0 4px #fff,
-        0 0 8px #fff,
-        0 0 12px #fff,
-        0 0 16px #fff;
-    text-decoration: underline;
-}
-
-/* ===== Form di Iscrizione (Desktop) ===== */
-.form-container-desktop {
-    width: 90%;
-    max-width: 500px;
-    background-color: #1a1a1a;
-    padding: 2.5rem;
-    border: 2px solid #333;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    border-radius: 8px;
-    transition: all 0.3s ease-in-out;
-    margin: auto;
-    display: none; /* Nascosto per ora, attivato tramite JS */
-}
-
-/* Stili specifici per il form */
-.form-container-desktop label {
-    display: block;
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    color: #e0e0e0;
-}
-
-.form-container-desktop input,
-.form-container-desktop textarea {
-    width: 100%;
-    padding: 0.8rem;
-    margin-top: 0.3rem;
-    font-size: 1rem;
-    border: 1px solid #444;
-    background-color: #2b2b2b;
-    color: #f7f3e9;
-    font-family: inherit;
-    border-radius: 4px;
-}
-
-.form-container-desktop button {
-    width: 100%;
-    padding: 1rem;
-    margin-top: 2rem;
-    font-size: 1rem;
-    background-color: #d4af37;
-    color: #1a1a1a;
-    border: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: bold;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-/* ===== Sezione Box Link Invito ===== */
-#invito-box {
-    border: 2px solid #d4af37;
-    margin-bottom: 25px;
-    padding: 15px 20px;
-    background: #1c1c1c;
-    box-shadow: 0 0 8px rgba(212,175,55,0.6);
-    text-align: center;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Cinzel', serif;
-}
-
-#invito-box input[type="text"] {
-    width: 100%;
-    padding: 10px 12px;
-    font-family: 'Cinzel', serif;
-    font-size: 1em;
-    margin-bottom: 12px;
-    border: 2px solid #d4af37;
-    background: #111;
-    color: #f1e6c9;
-    box-sizing: border-box;
-}
-
-#invito-box input[type="text"]::placeholder {
-    color: #ccc;
-    opacity: 1;
-}
-
-#link-invito {
-    margin-top: 12px;
-    font-family: 'Cinzel', serif;
-    font-size: 1em;
-    color: #f1e6c9;
-    word-break: break-all;
-}
-
-/* ===== Stile per i pulsanti specifici ===== */
-#invito-box button,
-#typewriter_btn,
-.btn_class {
-    display: inline-block;
-    margin: 10px;
-    padding: 12px 25px;
-    font-size: 16px;
-    font-family: 'Cinzel', serif;
-    font-weight: bold;
-    color: #000;
-    background: #fff;
-    border: 3px solid #d4af37;
-    border-radius: 25px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    text-shadow: none;
-    transition: all 0.2s ease;
-}
-
-#invito-box button:hover,
-#typewriter_btn:hover,
-.btn_class:hover {
-    background: #f8f8f8;
-    border-color: #d4af37;
-}
-
-/* ===== Custom autocomplete container ===== */
-.autocomplete-items {
-    position: absolute;
-    background: #111;
-    border: 2px solid #d4af37;
-    border-top: none;
-    max-height: 200px;
-    overflow-y: auto;
-    width: 100%;
-    z-index: 1000;
+.notice {
     display: none;
-    box-sizing: border-box;
+    padding: 0.65rem 0.85rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+}
+.notice.success { background: #ecfdf5; color: #065f46; border: 1px solid #065f46; }
+.notice.error { background: #fff1f2; color: #991b1b; border: 1px solid #991b1b; }
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .outer { padding: 1rem; }
+  form { padding: 1rem; }
+  .row { flex-direction: column; gap: 0; }
+  .half { margin-bottom: 0.75rem; }
+  .actions { justify-content: center; }
 }
 
-.autocomplete-items div {
-    padding: 8px;
-    cursor: pointer;
-    color: #f1e6c9;
-    font-family: 'Cinzel', serif;
-    border-bottom: 1px dashed #555;
-}
-
-.autocomplete-items div:hover {
-    background: #d4af37;
-    color: #111;
-}
-
-.autocomplete-items.show {
-    display: block;
-}
-
-/* ===== MEDIA QUERY per smartphone e tablet (Modalità Form) ===== */
-@media (max-width: 768px) {
-    .main-container {
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 0;
-        height: 100vh;
-        overflow-y: auto;
-    }
-
-    .form-container-mobile {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        width: 100%;
-        max-width: 100%;
-        padding: 1.5rem;
-        background-color: #1a1a1a;
-        border: none;
-        box-shadow: none;
-    }
-
-    .dashboard-content {
-        display: none; /* Nasconde la dashboard su schermi piccoli */
-    }
-}
-
-/* ===== Layout a due colonne (Form e Dashboard) su Desktop ===== */
-@media (min-width: 769px) {
-    .main-container {
-        flex-direction: row;
-        align-items: flex-start;
-    }
-    
-    .dashboard-content {
-        padding-left: 300px; /* Spazio per la sidebar */
-    }
-
-    .form-container-desktop {
-        display: flex; /* Mostra il form su desktop */
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 300px;
-        min-height: 100vh;
-        background-color: #1a1a1a;
-        border-right: 2px solid #d4af37;
-        padding: 2rem;
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-        overflow-y: auto;
-    }
-    
-    .form-container-mobile {
-        display: none;
-    }
+/* focus states */
+input:focus, select:focus, textarea:focus {
+    outline: 3px solid rgba(37, 99, 235, 0.12);
+    border-color: #2563eb; /* Colore accento per il focus */
 }
