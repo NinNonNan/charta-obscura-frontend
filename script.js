@@ -4,6 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const dashboardContainer = document.getElementById('dashboard-content');
     const toggleViewBtn = document.getElementById('toggle-view');
 
+    // Funzione per estrarre il parametro 'societa' dall'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const nomeSocieta = urlParams.get('societa') || 'Codicillo di Turing'; // Default se non specificato
+
+    // Aggiorna il testo del sottotitolo con il nome della società
+    const nomeSocietaLabel = document.getElementById('nome-societa-label');
+    if (nomeSocietaLabel) {
+        nomeSocietaLabel.textContent = nomeSocieta;
+    }
+
     // Funzione per cambiare la sezione visibile
     const showDashboard = () => {
         formContainer.style.display = 'none';
@@ -28,74 +38,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Logica di validazione e invio del form
     const form = document.getElementById('anagrafica-form');
-    const submitBtn = document.getElementById('submitBtn');
-    const successMessage = document.getElementById('success-message');
-    const errorMessage = document.getElementById('error-message');
-
-    function show(el, text) {
-        el.textContent = text;
-        el.style.display = 'block';
-    }
-
-    function hide(el) {
-        el.style.display = 'none';
-    }
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const formResponse = document.getElementById('form-response');
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        hide(successMessage);
-        hide(errorMessage);
+        
+        // Simula l'invio
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        data.societa = nomeSocieta; // Aggiunge il campo societa ai dati
 
-        if (!form.checkValidity()) {
-            const firstInvalid = form.querySelector(':invalid');
-            if (firstInvalid) firstInvalid.focus();
-            show(errorMessage, "Controlla i campi obbligatori.");
-            return;
-        }
+        console.log('Dati da inviare:', data);
 
-        submitBtn.setAttribute('aria-busy', 'true');
         submitBtn.disabled = true;
 
         try {
+            // Qui andrebbe la logica per inviare i dati, ad esempio a un foglio di Google
+            // Simuleremo una risposta positiva
             const urlCartella = 'https://drive.google.com/drive/folders/abcdefg12345';
             setTimeout(() => {
-                const message = `Iscrizione completata! Accedi alla tua cartella personale: <a href="${urlCartella}" target="_blank">${urlCartella}</a>`;
-                show(successMessage, ''); 
-                successMessage.innerHTML = message;
+                formResponse.innerHTML = `<p class="success">Iscrizione completata! Accedi alla tua cartella personale: <br><a href="${urlCartella}" target="_blank">${urlCartella}</a></p>`;
                 form.reset();
-                submitBtn.removeAttribute('aria-busy');
                 submitBtn.disabled = false;
             }, 1500);
+
         } catch (error) {
-            show(errorMessage, "Si è verificato un errore durante l'invio.");
-            submitBtn.removeAttribute('aria-busy');
+            formResponse.innerHTML = `<p class="error">Si è verificato un errore durante l'invio.</p>`;
             submitBtn.disabled = false;
         }
-    });
-
-    form.addEventListener('input', () => {
-        hide(successMessage);
-        hide(errorMessage);
-    });
-
-    // Logica per la generazione di link di invito
-    const invitoSocietaInput = document.getElementById('invito_nome_societa');
-    const generaLinkBtn = document.getElementById('genera_link_btn');
-    const linkInvitoOutput = document.getElementById('link-invito');
-
-    generaLinkBtn.addEventListener('click', () => {
-        const nomeSocieta = invitoSocietaInput.value;
-        if (nomeSocieta.trim() === '') {
-            linkInvitoOutput.textContent = 'Inserisci un nome per la società.';
-            linkInvitoOutput.style.color = '#f44336';
-            return;
-        }
-
-        const encodedNomeSocieta = encodeURIComponent(nomeSocieta.trim());
-        const baseUrl = window.location.origin; 
-        const linkGenerato = `${baseUrl}/?societa=${encodedNomeSocieta}`;
-
-        linkInvitoOutput.innerHTML = `Il tuo link di invito è: <br><a href="${linkGenerato}" target="_blank">${linkGenerato}</a>`;
-        linkInvitoOutput.style.color = '#4caf50';
     });
 });
