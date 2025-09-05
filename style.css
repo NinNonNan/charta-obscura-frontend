@@ -1,4 +1,4 @@
-/* ===== Stili Globali e Sfondo ===== */
+/* Stili globali e sfondo */
 :root {
   --page-bg: #111;
   --form-bg: #fef3c7;
@@ -20,7 +20,7 @@ body {
   padding-top: 100px;
 }
 
-/* ===== Header Fisso ===== */
+/* Header Fisso */
 .fixed-header {
   position: fixed;
   top: 0;
@@ -49,16 +49,13 @@ body {
   color: var(--page-bg);
 }
 
-/* ===== Contenitore Principale ===== */
+/* Contenitore Principale */
 .main-content {
     width: 100%;
     max-width: 840px;
 }
 
-/* ======================================= */
-/* ====== STILI DEL TUO FORM ESATTI ====== */
-/* ======================================= */
-
+/* Stili del Form (il tuo stile esatto) */
 .container {
     max-width: 600px;
     width: 100%;
@@ -154,32 +151,44 @@ button:hover {
   background: #444;
 }
 
-/* Responsive del form */
+/* ===== Responsive del form (NUOVO CODICE) ===== */
 @media (max-width: 600px) {
-  .form-container {
-    padding: 1rem;
-    border-width: 3px;
+  body {
+    padding: 0;
+    justify-content: flex-start;
+    padding-top: 80px; /* Spazio per l'header fisso */
+  }
+
+  .main-content {
+    max-width: 100%;
+    width: 100%;
+    margin-top: -80px; /* Sposta il contenuto in alto per riempire lo schermo */
+  }
+
+  .container {
+    max-width: 100%;
+    width: 100%;
     margin: 0;
   }
-  h1 {
-    font-size: 1.4rem;
-    letter-spacing: 1px;
+  
+  .form-container {
+    border-width: 0; /* Rimuove il bordo principale per il full-screen */
+    box-shadow: none;
+    padding: 1rem;
+    height: calc(100vh - 80px); /* Il form occupa l'altezza rimanente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  h2 {
-    font-size: 1rem;
+  
+  .form-container:before,
+  .form-container:after {
+    display: none; /* Nasconde gli angoli ornamentali */
   }
-  label {
-    font-size: 0.85rem;
-  }
-  input, select, textarea {
-    font-size: 0.9rem;
-    padding: 0.35rem;
-    width: 100%;
-    margin: 0.2rem 0 0 0;
-  }
-  button {
-    width: 100%;
-    font-size: 0.95rem;
-    padding: 0.8rem;
-  }
+
+  h1 { font-size: 1.4rem; letter-spacing: 1px; }
+  h2 { font-size: 1rem; }
+  label { font-size: 0.85rem; }
+  input, select, textarea { font-size: 0.9rem; padding: 0.35rem; }
+  button { width: 100%; font-size: 0.95rem; padding: 0.8rem; }
 }
