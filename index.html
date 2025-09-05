@@ -3,14 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charta Obscura - Il Codicillo di Turing</title>
+    <title>Dashboard - Charta Obscura</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400..700&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Progetto in Corso</h1>
-        <p>Il Codicillo di Turing è in fase di decifrazione. La nostra corrispondenza avrà presto inizio.</p>
+
+    <div class="fixed-header">
+        <button id="refresh_btn">Aggiorna Dati</button>
+        <button id="send_btn">Invia Lettere</button>
     </div>
+
+    <h1>Charta Obscura</h1>
+    <h2>Il Codicillo di Turing</h2>
+
+    <div id="data-box">
+        Stato attuale del Codicillo: <span id="status">Caricamento...</span>
+    </div>
+
+    <div id="societa-container">
+        </div>
+
+    <div id="output"></div>
+
 </body>
 </html>
