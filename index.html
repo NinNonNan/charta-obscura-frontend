@@ -3,89 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charta Obscura - Iscrizione</title>
+    <title>Charta Obscura</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..700&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="fixed-header">
-        <button id="view_dashboard_btn">Vai alla Dashboard</button>
+        <button id="toggle-view">Vai alla Dashboard</button>
     </div>
 
-    <div class="outer">
-        <form id="anagrafica-form" novalidate>
-            <div>
-                <h1 id="title">Charta Obscura</h1>
-                <p class="lead">Registra il tuo alter ego nel Codicillo di Turing.</p>
-            </div>
-
-            <div>
-                <label for="nome_societa">Nome Società</label>
-                <input type="text" id="nome_societa" name="nome_societa" placeholder="Es. L'Ordine del Crisantemo" required>
-            </div>
-
-            <div class="row">
-                <div class="half">
-                    <label for="appellativo">Appellativo</label>
-                    <input type="text" id="appellativo" name="appellativo" placeholder="Es. Dott., Prof., Mastro" required>
+    <div id="form-container" class="main-content">
+        <div class="outer">
+            <form id="anagrafica-form" novalidate>
+                <div>
+                    <h1 id="title">Charta Obscura</h1>
+                    <p class="lead">Registra il tuo alter ego nel Codicillo di Turing.</p>
                 </div>
-                <div class="half">
-                    <label for="nome">Nome Personaggio</label>
-                    <input type="text" id="nome" name="nome" placeholder="Es. John" required>
+
+                <div>
+                    <label for="nome_societa">Nome Società</label>
+                    <input type="text" id="nome_societa" name="nome_societa" placeholder="Es. L'Ordine del Crisantemo" required>
                 </div>
-            </div>
 
-            <div>
-                <label for="cognome">Cognome Personaggio</label>
-                <input type="text" id="cognome" name="cognome" placeholder="Es. Watson" required>
-            </div>
-            
-            <div>
-                <label for="alterego">Alter Ego</label>
-                <input type="text" id="alterego" name="alterego" placeholder="Es. 'Silas Marsh'" required>
-            </div>
+                <div class="row">
+                    <div class="half">
+                        <label for="appellativo">Appellativo</label>
+                        <input type="text" id="appellativo" name="appellativo" placeholder="Es. Dott., Prof., Mastro" required>
+                    </div>
+                    <div class="half">
+                        <label for="nome">Nome Personaggio</label>
+                        <input type="text" id="nome" name="nome" placeholder="Es. John" required>
+                    </div>
+                </div>
 
-            <div>
-                <label for="luogo_nascita">Luogo di Nascita</label>
-                <input type="text" id="luogo_nascita" name="luogo_nascita" placeholder="Es. Arkham, Massachusetts" required>
-            </div>
+                <div>
+                    <label for="cognome">Cognome Personaggio</label>
+                    <input type="text" id="cognome" name="cognome" placeholder="Es. Watson" required>
+                </div>
+                
+                <div>
+                    <label for="alterego">Alter Ego</label>
+                    <input type="text" id="alterego" name="alterego" placeholder="Es. 'Silas Marsh'" required>
+                </div>
 
-            <div>
-                <label for="data_nascita">Data di Nascita</label>
-                <input type="date" id="data_nascita" name="data_nascita" required>
-            </div>
+                <div>
+                    <label for="luogo_nascita">Luogo di Nascita</label>
+                    <input type="text" id="luogo_nascita" name="luogo_nascita" placeholder="Es. Arkham, Massachusetts" required>
+                </div>
 
-            <div>
-                <label for="professione">Professione</label>
-                <input type="text" id="professione" name="professione" placeholder="Es. Investigatore del paranormale" required>
-            </div>
-            
-            <div>
-                <label for="indirizzo">Indirizzo</label>
-                <input type="text" id="indirizzo" name="indirizzo" placeholder="Es. Via del Mistero 13" required>
-            </div>
+                <div>
+                    <label for="data_nascita">Data di Nascita</label>
+                    <input type="date" id="data_nascita" name="data_nascita" required>
+                </div>
 
-            <div>
-                <label for="note">Note Aggiuntive</label>
-                <textarea id="note" name="note" placeholder="Eventuali tratti distintivi, segreti o abitudini da registrare."></textarea>
-            </div>
+                <div>
+                    <label for="professione">Professione</label>
+                    <input type="text" id="professione" name="professione" placeholder="Es. Investigatore del paranormale" required>
+                </div>
+                
+                <div>
+                    <label for="indirizzo">Indirizzo</label>
+                    <input type="text" id="indirizzo" name="indirizzo" placeholder="Es. Via del Mistero 13" required>
+                </div>
 
-            <div class="row" style="align-items:center;justify-content:space-between">
-                <div class="checkbox">
-                    <input type="checkbox" id="privacy" name="privacy" required />
-                    <label for="privacy" style="margin-left:0.4rem">Accetto la privacy (obbligatorio)</label>
-                </div>
-                <div class="actions">
-                    <button type="submit" id="submitBtn">Invia</button>
-                </div>
-            </div>
+                <div>
+                    <label for="note">Note Aggiuntive</label>
+                    <textarea id="note" name="note" placeholder="Eventuali tratti distintivi, segreti o abitudini da registrare."></textarea>
+                </div>
 
-            <div class="notice success" id="success-message" role="status" aria-live="polite"></div>
-            <div class="notice error" id="error-message" role="alert" aria-live="assertive"></div>
-        </form>
+                <div class="actions">
+                    <button type="submit" id="submitBtn">Invia al Codicillo</button>
+                </div>
+
+                <div class="notice success" id="success-message" role="status" aria-live="polite"></div>
+                <div class="notice error" id="error-message" role="alert" aria-live="assertive"></div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="dashboard-content" style="display:none;" class="main-content">
+        <h2>Dashboard di Gestione</h2>
+
+        <div id="invito-box">
+            <h3>Genera Link di Invito</h3>
+            <input type="text" id="invito_nome_societa" placeholder="Nome Società">
+            <button id="genera_link_btn">Genera Link</button>
+            <div id="link-invito"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>
