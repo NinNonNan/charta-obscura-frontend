@@ -7,9 +7,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..700&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <div class="fixed-header">
+        <button id="view_dashboard_btn">Vai alla Dashboard</button>
+    </div>
 
     <div class="outer">
         <form id="anagrafica-form" novalidate>
@@ -69,9 +73,15 @@
                 <textarea id="note" name="note" placeholder="Eventuali tratti distintivi, segreti o abitudini da registrare."></textarea>
             </div>
 
-            <div class="actions">
-                <button type="submit" id="submitBtn">Invia al Codicillo</button>
-            </div>
+            <div class="row" style="align-items:center;justify-content:space-between">
+                <div class="checkbox">
+                    <input type="checkbox" id="privacy" name="privacy" required />
+                    <label for="privacy" style="margin-left:0.4rem">Accetto la privacy (obbligatorio)</label>
+                </div>
+                <div class="actions">
+                    <button type="submit" id="submitBtn">Invia</button>
+                </div>
+            </div>
 
             <div class="notice success" id="success-message" role="status" aria-live="polite"></div>
             <div class="notice error" id="error-message" role="alert" aria-live="assertive"></div>
