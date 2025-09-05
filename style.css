@@ -14,7 +14,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* MODIFICATO: Allinea il contenuto in alto */
   min-height: 100vh;
   padding: 2rem;
   padding-top: 100px;
@@ -53,6 +53,7 @@ body {
 .main-content {
     width: 100%;
     max-width: 840px;
+    padding: 0; /* MODIFICATO: Rimuove il padding per i dispositivi mobili */
 }
 
 /* Stili del Form (il tuo stile esatto) */
@@ -151,18 +152,18 @@ button:hover {
   background: #444;
 }
 
-/* ===== Responsive del form (NUOVO CODICE) ===== */
+/* Responsive del form */
 @media (max-width: 600px) {
   body {
     padding: 0;
     justify-content: flex-start;
-    padding-top: 80px; /* Spazio per l'header fisso */
   }
-
+  
   .main-content {
     max-width: 100%;
     width: 100%;
-    margin-top: -80px; /* Sposta il contenuto in alto per riempire lo schermo */
+    padding: 1rem;
+    padding-top: calc(15px + 2rem + 10px); /* Regola il padding per lasciare spazio all'header */
   }
 
   .container {
@@ -172,10 +173,10 @@ button:hover {
   }
   
   .form-container {
-    border-width: 0; /* Rimuove il bordo principale per il full-screen */
+    border-width: 0;
     box-shadow: none;
     padding: 1rem;
-    height: calc(100vh - 80px); /* Il form occupa l'altezza rimanente */
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -183,7 +184,7 @@ button:hover {
   
   .form-container:before,
   .form-container:after {
-    display: none; /* Nasconde gli angoli ornamentali */
+    display: none;
   }
 
   h1 { font-size: 1.4rem; letter-spacing: 1px; }
