@@ -23,11 +23,11 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  /* Sfondo con texture di legno chiaro */
-  background-color: #6a493a;
-  background-image: url('https://assets.codepen.io/416221/light_wood.jpeg');
-  background-size: cover;
-  background-position: center center;
+  /* NUOVO SFONDO ART DECO */
+  background-color: #3e2723; /* Un marrone scuro e caldo */
+  background-image: url('https://www.transparenttextures.com/patterns/art-deco.png');
+  background-repeat: repeat;
+  /* FINE NUOVO SFONDO */
 }
 
 /* Header Fisso */
@@ -226,7 +226,7 @@ button:hover {
 /* Modalità scura */
 @media screen and (prefers-color-scheme: dark) {
   body {
-    background-image: url('https://assets.codepen.io/416221/dark_wood.jpeg');
+    background-image: url('https://www.transparenttextures.com/patterns/dark-wood.png');
     background-size: cover;
     background-position: center center;
   }
