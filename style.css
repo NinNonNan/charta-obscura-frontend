@@ -1,7 +1,7 @@
-/* ===== Corpo pagina e stili globali ===== */
+/* Stili globali e reset */
 :root {
   --page-bg: #111;
-  --container-bg: #1c1c1c;
+  --container-bg: #ffffff;
   --form-bg: #fef3c7;
   --accent: #2563eb;
   --muted: #6b7280;
@@ -11,9 +11,12 @@
 }
 
 * { box-sizing: border-box; }
-html, body { height: 100%; }
-body {
+html, body {
+  height: 100%;
   margin: 0;
+  padding: 0;
+}
+body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -21,11 +24,11 @@ body {
   justify-content: center;
   background: var(--page-bg);
   padding: 2rem;
-  padding-top: 100px; /* Spazio per l'header fisso */
+  padding-top: 100px;
   color: #f1e6c9;
 }
 
-/* ===== Header fisso ===== */
+/* Header Fisso */
 .fixed-header {
   position: fixed;
   top: 0;
@@ -54,22 +57,22 @@ body {
   color: #111;
 }
 
-/* ===== Contenitore esterno che centra il form ===== */
-.outer {
-  width: 100%;
-  max-width: 840px;
-  padding: 2rem;
-  background: var(--container-bg);
-  border-radius: var(--radius);
-  box-shadow: 0 8px 30px rgba(2,6,23,0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(0,0,0,0.03);
+/* Contenitore principale */
+.main-content {
+    width: 100%;
+    max-width: 840px;
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    background: #1c1c1c; 
+    border-radius: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-/* ===== Stile del Form (il tuo stile pulito e moderno) ===== */
-form {
+/* Stili del Form (il tuo stile pulito e moderno) */
+.outer {
   width: 100%;
   max-width: 560px;
   background: var(--form-bg);
@@ -88,7 +91,6 @@ h1#title {
   font-size: 1.25rem;
   color: #0f172a;
 }
-
 p.lead {
   margin: 0;
   color: var(--muted);
@@ -98,8 +100,8 @@ p.lead {
 label {
   font-size: 0.95rem;
   margin-bottom: 0.25rem;
+  color: #0f172a;
 }
-
 input[type="text"], input[type="date"], input[type="email"], select, textarea {
   padding: 0.65rem 0.85rem;
   border: 1px solid rgba(15,23,42,0.08);
@@ -107,35 +109,124 @@ input[type="text"], input[type="date"], input[type="email"], select, textarea {
   font-size: 0.95rem;
   width: 100%;
   background: transparent;
+  color: #0f172a;
 }
 textarea { min-height: 120px; resize: vertical; }
 
 .row { display: flex; gap: 0.75rem; }
 .half { flex: 1; }
 
-.actions { display: flex; gap: 0.75rem; align-items: center; justify-content: flex-end; }
-button#submitBtn {
-  background: var(--accent);
+.actions { display: flex; justify-content: flex-end; }
+button {
+  background: #2563eb;
   color: white;
-  padding: 0.6rem 0.9rem;
+  padding: 0.8rem 1.2rem;
   border-radius: 8px;
   border: 0;
   font-weight: 600;
   cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
 }
+button:hover { background: #1d4ed8; }
 button[aria-busy="true"] { opacity: 0.7; cursor: wait; }
 
-.small { font-size: 0.85rem; color: var(--muted); }
+.notice {
+    display: none;
+    padding: 0.65rem 0.85rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+}
+.notice.success { background: #ecfdf5; color: #065f46; border: 1px solid #065f46; }
+.notice.error { background: #fff1f2; color: #991b1b; border: 1px solid #991b1b; }
 
-/* Stili per messaggi di stato */
-.notice { display: none; padding: 0.65rem 0.85rem; border-radius: 8px; font-weight: 600; }
-.notice.success { background: #ecfdf5; color: #065f46; }
-.notice.error { background: #fff1f2; color: #991b1b; }
+/* Stili della Dashboard */
+#dashboard-content h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2.5em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    color: #d4af37;
+    border-bottom: 3px solid #d4af37;
+    display: inline-block;
+    padding: 0 20px 10px 20px;
+}
 
-/* Focus states */
-input:focus, select:focus, textarea:focus {
-  outline: 3px solid rgba(37,99,235,0.12);
-  border-color: var(--accent);
+/* Stili per la sezione inviti */
+#invito-box {
+    border: 2px solid #d4af37;
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    background: #1c1c1c;
+    box-shadow: 0 0 8px rgba(212,175,55,0.6);
+    text-align: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Cinzel', serif;
+}
+
+#invito-box h3 {
+    font-size: 1.8em;
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #d4af37;
+}
+
+#invito-box input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 1em;
+    margin-bottom: 12px;
+    border: 2px solid #d4af37;
+    background: #111;
+    color: #f1e6c9;
+    box-sizing: border-box;
+    text-align: center;
+}
+/* Focus states per la dashboard */
+#invito-box input:focus {
+  outline: 3px solid rgba(212, 175, 55, 0.5);
+  border-color: #d4af37;
+}
+#invito-box input[type="text"]::placeholder {
+    color: #ccc;
+    opacity: 1;
+}
+
+/* Stile per i pulsanti specifici della dashboard */
+#invito-box button {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    color: #000;
+    background: #fff;
+    border: 3px solid #d4af37;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: none;
+    transition: all 0.2s ease;
+}
+
+#invito-box button:hover {
+    background: #f8f8f8;
+    border-color: #d4af37;
+}
+
+#link-invito {
+    margin-top: 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 1em;
+    color: #f1e6c9;
+    word-break: break-all;
 }
 
 /* Responsive tweaks */
@@ -144,4 +235,5 @@ input:focus, select:focus, textarea:focus {
   form { padding: 1rem; }
   .row { flex-direction: column; gap: 0; }
   .half { margin-bottom: 0.75rem; }
+  .actions { justify-content: center; }
 }
