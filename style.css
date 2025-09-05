@@ -1,0 +1,26 @@
+body {
+    font-family: sans-serif;
+    background-color: #1a1a1a;
+    color: #f7f3e9;
+    text-align: center;
+    padding: 50px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 600px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2em;
+}
