@@ -1,6 +1,6 @@
 /* Stili globali e sfondo */
 :root {
-  --page-bg: #4b4b4b; /* Cambiato per far risaltare il form */
+  --page-bg: #4b4b4b; /* Non più usato per il body, ma mantenuto per chiarezza */
   --form-bg: #fef3c7;
   --text-dark: #2b2b2b;
   --gold: #d4af37;
@@ -19,7 +19,20 @@ html, body {
 
 body {
   font-family: 'Cinzel', serif;
-  background-color: var(--page-bg);
+  /* NUOVO SFONDO EFFETTO LEGNO */
+  background-color: #6a493a;
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.05) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 10px 10px;
+  /* FINE NUOVO SFONDO */
   color: #f1e6c9;
   margin: 0;
   padding: 0;
@@ -32,13 +45,13 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background: #111; /* Mantenuto lo sfondo scuro */
+  background: #111;
   padding: 15px 0;
   border-bottom: 2px solid var(--gold);
   z-index: 1000;
   display: flex;
-  align-items: center; /* Centra verticalmente */
-  justify-content: center; /* Centra orizzontalmente */
+  align-items: center;
+  justify-content: center;
 }
 
 .fixed-header button {
@@ -169,12 +182,12 @@ button:hover {
 /* Responsive del form */
 @media (max-width: 600px) {
   .fixed-header {
-    height: 60px; /* Header più piccolo su mobile */
+    height: 60px;
     padding: 10px 0;
   }
 
   .fixed-header button {
-    padding: 8px 15px; /* Pulsante più piccolo */
+    padding: 8px 15px;
     font-size: 0.9rem;
   }
 
@@ -185,9 +198,9 @@ button:hover {
   .main-content {
     max-width: 100%;
     width: 100%;
-    padding: 0.5rem; /* Ridotto il padding generale */
-    padding-top: calc(60px + 0.5rem); /* Usa l'altezza fissa del nuovo header + padding */
-    min-height: calc(100vh - 60px); /* Adatta l'altezza minima */
+    padding: 0.5rem;
+    padding-top: calc(60px + 0.5rem);
+    min-height: calc(100vh - 60px);
   }
 
   .container {
@@ -199,12 +212,12 @@ button:hover {
   .form-container {
     border-width: 0;
     box-shadow: none;
-    padding: 0.8rem; /* Ridotto il padding interno del form */
-    height: auto; /* Lascia che l'altezza sia automatica */
+    padding: 0.8rem;
+    height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Allinea in alto per i campi */
-    min-height: calc(100vh - 60px - 1rem); /* Altezza minima per riempire lo spazio restante */
+    justify-content: flex-start;
+    min-height: calc(100vh - 60px - 1rem);
   }
   
   .form-container:before,
@@ -214,7 +227,7 @@ button:hover {
 
   h1 { font-size: 1.2rem; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
   h2 { font-size: 0.9rem; margin-bottom: 1rem; }
-  label { font-size: 0.8rem; margin-top: 0.7rem; } /* Spazio ridotto */
-  input, select, textarea { font-size: 0.85rem; padding: 0.3rem; margin: 0.1rem 0 0 0; } /* Campi più compatti */
+  label { font-size: 0.8rem; margin-top: 0.7rem; }
+  input, select, textarea { font-size: 0.85rem; padding: 0.3rem; margin: 0.1rem 0 0 0; }
   button { width: 100%; font-size: 0.9rem; padding: 0.6rem; margin-top: 1.5rem; }
 }
