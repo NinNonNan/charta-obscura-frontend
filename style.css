@@ -7,11 +7,14 @@
   --gray-muted: #6b7280;
 }
 
-/* * Evita scroll orizzontale su tutta la pagina
- * Importante per la responsività
- */
+/* Evita scroll orizzontale su tutta la pagina */
 html, body {
   overflow-x: hidden;
+  box-sizing: border-box; /* Aggiunto per risolvere i problemi di layout */
+}
+
+*, *:before, *:after {
+  box-sizing: inherit; /* Tutti gli elementi ereditano il box-sizing corretto */
 }
 
 body {
