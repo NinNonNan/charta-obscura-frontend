@@ -1,42 +1,34 @@
-/* Stili globali e reset */
+/* ===== Stili Globali e Sfondo ===== */
 :root {
   --page-bg: #111;
-  --container-bg: #ffffff;
   --form-bg: #fef3c7;
-  --accent: #2563eb;
-  --muted: #6b7280;
-  --radius: 12px;
-  --gap: 1rem;
-  font-family: 'Cinzel', serif;
+  --text-dark: #2b2b2b;
+  --gold: #d4af37;
+  --gray-muted: #6b7280;
 }
 
-* { box-sizing: border-box; }
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
 body {
-  min-height: 100vh;
+  font-family: 'Cinzel', serif;
+  background-color: var(--page-bg);
+  color: #f1e6c9;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--page-bg);
+  min-height: 100vh;
   padding: 2rem;
   padding-top: 100px;
-  color: #f1e6c9;
 }
 
-/* Header Fisso */
+/* ===== Header Fisso ===== */
 .fixed-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: #111;
+  background: var(--page-bg);
   padding: 15px 0;
-  border-bottom: 2px solid #d4af37;
+  border-bottom: 2px solid var(--gold);
   z-index: 1000;
   text-align: center;
 }
@@ -44,7 +36,7 @@ body {
 .fixed-header button {
   background: transparent;
   color: #f1e6c9;
-  border: 2px solid #d4af37;
+  border: 2px solid var(--gold);
   text-transform: uppercase;
   letter-spacing: 1px;
   padding: 12px 20px;
@@ -53,187 +45,141 @@ body {
 }
 
 .fixed-header button:hover {
-  background: #d4af37;
-  color: #111;
+  background: var(--gold);
+  color: var(--page-bg);
 }
 
-/* Contenitore principale */
+/* ===== Contenitore Principale ===== */
 .main-content {
     width: 100%;
     max-width: 840px;
-    padding: 2rem;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-    background: #1c1c1c; 
-    border-radius: 8px;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
 }
 
-/* Stili del Form (il tuo stile pulito e moderno) */
-.outer {
-  width: 100%;
-  max-width: 560px;
+/* ======================================= */
+/* ====== STILI DEL TUO FORM ESATTI ====== */
+/* ======================================= */
+
+.container {
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+}
+
+.form-container {
+  border: 4px double #000;
+  padding: 2rem;
   background: var(--form-bg);
-  padding: 1.25rem 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(2,6,23,0.04);
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap);
-  border: 1px solid rgba(0,0,0,0.03);
-  color: #0f172a;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
-h1#title {
-  margin: 0;
-  font-size: 1.25rem;
-  color: #0f172a;
+.form-container:before,
+.form-container:after {
+  content: "";
+  position: absolute;
+  border: 2px solid #000;
+  width: 30px;
+  height: 30px;
 }
-p.lead {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.95rem;
+
+.form-container:before {
+  top: -10px;
+  left: -10px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.form-container:after {
+  bottom: -10px;
+  right: -10px;
+  border-left: none;
+  border-top: none;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-dark);
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: serif;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  color: var(--text-dark);
 }
 
 label {
+  display: block;
+  margin-top: 1rem;
   font-size: 0.95rem;
-  margin-bottom: 0.25rem;
-  color: #0f172a;
+  letter-spacing: 1px;
+  color: var(--text-dark);
 }
-input[type="text"], input[type="date"], input[type="email"], select, textarea {
-  padding: 0.65rem 0.85rem;
-  border: 1px solid rgba(15,23,42,0.08);
-  border-radius: 8px;
-  font-size: 0.95rem;
+
+input,
+select,
+textarea {
   width: 100%;
-  background: transparent;
-  color: #0f172a;
+  padding: 0.4rem;
+  margin: 0.2rem 0 0 0;
+  border: 1px solid #444;
+  background: #fdfcf7;
+  font-family: serif;
+  font-size: 1rem;
+  color: var(--text-dark);
+  box-sizing: border-box;
 }
-textarea { min-height: 120px; resize: vertical; }
 
-.row { display: flex; gap: 0.75rem; }
-.half { flex: 1; }
-
-.actions { display: flex; justify-content: flex-end; }
 button {
-  background: #2563eb;
-  color: white;
-  padding: 0.8rem 1.2rem;
-  border-radius: 8px;
-  border: 0;
-  font-weight: 600;
+  margin-top: 2rem;
+  padding: 0.6rem 1.5rem;
+  font-family: serif;
+  font-size: 1rem;
+  background: #000;
+  color: #f7f3e9;
+  border: none;
   cursor: pointer;
   text-transform: uppercase;
-  transition: all 0.3s ease;
-}
-button:hover { background: #1d4ed8; }
-button[aria-busy="true"] { opacity: 0.7; cursor: wait; }
-
-.notice {
-    display: none;
-    padding: 0.65rem 0.85rem;
-    border-radius: 8px;
-    font-weight: 600;
-    text-align: center;
-}
-.notice.success { background: #ecfdf5; color: #065f46; border: 1px solid #065f46; }
-.notice.error { background: #fff1f2; color: #991b1b; border: 1px solid #991b1b; }
-
-/* Stili della Dashboard */
-#dashboard-content h2 {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 2.5em;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-    color: #d4af37;
-    border-bottom: 3px solid #d4af37;
-    display: inline-block;
-    padding: 0 20px 10px 20px;
+  letter-spacing: 2px;
 }
 
-/* Stili per la sezione inviti */
-#invito-box {
-    border: 2px solid #d4af37;
-    margin-bottom: 25px;
-    padding: 15px 20px;
-    background: #1c1c1c;
-    box-shadow: 0 0 8px rgba(212,175,55,0.6);
-    text-align: center;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Cinzel', serif;
+button:hover {
+  background: #444;
 }
 
-#invito-box h3 {
-    font-size: 1.8em;
+/* Responsive del form */
+@media (max-width: 600px) {
+  .form-container {
+    padding: 1rem;
+    border-width: 3px;
+    margin: 0;
+  }
+  h1 {
+    font-size: 1.4rem;
     letter-spacing: 1px;
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: #d4af37;
-}
-
-#invito-box input[type="text"] {
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  label {
+    font-size: 0.85rem;
+  }
+  input, select, textarea {
+    font-size: 0.9rem;
+    padding: 0.35rem;
     width: 100%;
-    padding: 10px 12px;
-    font-family: 'Cinzel', serif;
-    font-size: 1em;
-    margin-bottom: 12px;
-    border: 2px solid #d4af37;
-    background: #111;
-    color: #f1e6c9;
-    box-sizing: border-box;
-    text-align: center;
-}
-/* Focus states per la dashboard */
-#invito-box input:focus {
-  outline: 3px solid rgba(212, 175, 55, 0.5);
-  border-color: #d4af37;
-}
-#invito-box input[type="text"]::placeholder {
-    color: #ccc;
-    opacity: 1;
-}
-
-/* Stile per i pulsanti specifici della dashboard */
-#invito-box button {
-    display: inline-block;
-    margin: 10px;
-    padding: 12px 25px;
-    font-size: 16px;
-    font-family: 'Cinzel', serif;
-    font-weight: bold;
-    color: #000;
-    background: #fff;
-    border: 3px solid #d4af37;
-    border-radius: 25px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    text-shadow: none;
-    transition: all 0.2s ease;
-}
-
-#invito-box button:hover {
-    background: #f8f8f8;
-    border-color: #d4af37;
-}
-
-#link-invito {
-    margin-top: 12px;
-    font-family: 'Cinzel', serif;
-    font-size: 1em;
-    color: #f1e6c9;
-    word-break: break-all;
-}
-
-/* Responsive tweaks */
-@media (max-width: 640px) {
-  .outer { padding: 1rem; }
-  form { padding: 1rem; }
-  .row { flex-direction: column; gap: 0; }
-  .half { margin-bottom: 0.75rem; }
-  .actions { justify-content: center; }
+    margin: 0.2rem 0 0 0;
+  }
+  button {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.8rem;
+  }
 }
