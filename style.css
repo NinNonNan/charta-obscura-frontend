@@ -185,3 +185,8 @@ button:hover {
   }
 
   h1 { font-size: 1.4rem; letter-spacing: 1px; }
+  h2 { font-size: 1rem; }
+  label { font-size: 0.85rem; }
+  input, select, textarea { font-size: 0.9rem; padding: 0.35rem; }
+  button { width: 100%; font-size: 0.95rem; padding: 0.8rem; }
+}
