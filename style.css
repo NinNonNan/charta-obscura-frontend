@@ -1,26 +1,31 @@
-body {
-    font-family: sans-serif;
-    background-color: #1a1a1a;
-    color: #f7f3e9;
-    text-align: center;
-    padding: 50px;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Charta Obscura</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400..700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body>
 
-.container {
-    max-width: 600px;
-    padding: 20px;
-}
+    <div class="fixed-header">
+        <button id="refresh_btn">Aggiorna Dati</button>
+        <button id="send_btn">Invia Lettere</button>
+    </div>
 
-h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
+    <h1>Charta Obscura</h1>
+    <h2>Il Codicillo di Turing</h2>
 
-p {
-    font-size: 1.2em;
-}
+    <div id="data-box">
+        Stato attuale del Codicillo: <span id="status">Caricamento...</span>
+    </div>
+
+    <div id="societa-container">
+        </div>
+
+    <div id="output"></div>
+
+</body>
+</html>
