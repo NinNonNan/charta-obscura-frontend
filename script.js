@@ -17,22 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const nomeSocieta = urlParams.get('societa') || 'Codicillo di Turing';
     
-    // Applica l'effetto di sfocatura all'avvio della pagina del form
-    if (formContainer) {
-        blurredBackgroundOverlay.classList.add('is-blurred');
-        formContainer.classList.add('is-blurred');
-    }
-
+    // All'avvio della pagina, applica le classi di sfocatura
+    blurredBackgroundOverlay.classList.add('is-blurred');
+    formContainer.classList.add('is-blurred');
+    
     // Evento per nascondere il biglietto e rimuovere la sfocatura
     if (letteraBenvenuto) {
         letteraBenvenuto.addEventListener('click', () => {
             letteraBenvenuto.classList.add('hidden');
-            if (blurredBackgroundOverlay) {
-                blurredBackgroundOverlay.classList.remove('is-blurred');
-            }
-            if (formContainer) {
-                formContainer.classList.remove('is-blurred');
-            }
+            blurredBackgroundOverlay.classList.remove('is-blurred');
+            formContainer.classList.remove('is-blurred');
         });
     }
 
@@ -55,12 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const showForm = () => {
         dashboardContainer.style.display = 'none';
         formContainer.style.display = 'flex';
-        // Mantiene la sfocatura solo se il biglietto non è ancora stato cliccato
+        
+        // Applica la sfocatura se il biglietto non è stato cliccato
         if (!letteraBenvenuto.classList.contains('hidden')) {
             blurredBackgroundOverlay.classList.add('is-blurred');
             formContainer.classList.add('is-blurred');
+            letteraBenvenuto.style.display = 'block';
+        } else {
+            // Se il biglietto è già stato cliccato, mostra il form senza sfocatura
+            blurredBackgroundOverlay.classList.remove('is-blurred');
+            formContainer.classList.remove('is-blurred');
+            letteraBenvenuto.style.display = 'none';
         }
-        letteraBenvenuto.style.display = 'block';
         toggleViewBtn.textContent = 'Vai alla Dashboard';
     };
     
