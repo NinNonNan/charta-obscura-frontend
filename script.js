@@ -96,9 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Aggiorna il contenuto di form-response per mostrare il messaggio di successo
                 const successMsg = `
-                    <div style="text-align: center; padding: 2rem; color: #065f46; background-color: #ecfdf5; border: 1px solid #065f46;">
+                    <div style="text-align: center; padding: 2rem; color: #333; background-color: #fff; border: 1px solid #ccc; border-radius: 8px;">
                         <p style="font-size: 1.2rem; margin: 0;">Iscrizione completata con successo!</p>
-                        <p style="font-size: 1rem; margin-top: 1rem;">Accedi alla tua cartella personale: <br><a href="${result.folderUrl}" target="_blank">${result.folderUrl}</a></p>
+                        <p style="font-size: 1rem; margin-top: 1rem;">Accedi alla tua cartella personale: <br><a href="${result.folderUrl}" target="_blank" style="color: #6a0dad; text-decoration: underline;">QUI</a></p>
                     </div>
                 `;
                 formResponse.innerHTML = successMsg;
