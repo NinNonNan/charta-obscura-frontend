@@ -17,10 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const nomeSocieta = urlParams.get('societa') || 'Codicillo di Turing';
     
-    // All'avvio della pagina, applica le classi di sfocatura
+    // Al caricamento della pagina, applica le classi di sfocatura e mostra il biglietto
+    // in modo che l'effetto sia immediato.
     blurredBackgroundOverlay.classList.add('is-blurred');
     formContainer.classList.add('is-blurred');
-    
+
     // Evento per nascondere il biglietto e rimuovere la sfocatura
     if (letteraBenvenuto) {
         letteraBenvenuto.addEventListener('click', () => {
@@ -50,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dashboardContainer.style.display = 'none';
         formContainer.style.display = 'flex';
         
-        // Applica la sfocatura se il biglietto non è stato cliccato
+        // Se il biglietto è ancora visibile (non cliccato), applica la sfocatura
         if (!letteraBenvenuto.classList.contains('hidden')) {
             blurredBackgroundOverlay.classList.add('is-blurred');
             formContainer.classList.add('is-blurred');
