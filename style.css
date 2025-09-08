@@ -96,7 +96,7 @@ body {
   max-width: 840px;
   margin: 0 auto;
   padding: 2rem;
-  min-height: calc(100vh - 75px - 2rem); /* Ricalcolato per l'header */
+  /* Rimuovo il min-height che causava problemi su desktop */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -274,6 +274,14 @@ button:hover {
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
+/* Regola per il font del biglietto (spostata qui fuori dal media query) */
+#lettera-benvenuto p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
 /* Stato nascosto (per lo script JS) */
 #lettera-benvenuto.hidden {
     opacity: 0;
@@ -322,7 +330,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    min-height: calc(100vh - 60px - 1rem); /* Questo calcolo tiene conto dell'header e del padding */
+    /* Rimuovo anche qui il min-height che causava problemi su mobile */
   }
   
   .form-container:before,
@@ -346,10 +354,7 @@ button:hover {
   }
 
   #lettera-benvenuto p {
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.8rem;
-      line-height: 1.4;
-      margin: 0;
+      font-size: 1.1rem;
   }
   
 }
