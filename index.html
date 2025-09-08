@@ -60,7 +60,6 @@
     
     <div id="dashboard-content" class="main-content" style="display:none;">
     </div>
-    
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
@@ -71,7 +70,19 @@
         defaultDate: "01/01/1925",
         altInput: true,
         altFormat: "d F Y",
-        "disableMobile": "true"
+        "disableMobile": "true",
+        onReady: function(selectedDates, dateStr, instance) {
+            // Applica lo stile placeholder all'avvio
+            instance.altInput.classList.add('placeholder-style');
+        },
+        onClose: function(selectedDates, dateStr, instance) {
+            // Rimuove lo stile placeholder se l'utente seleziona una data
+            if (selectedDates.length > 0 && selectedDates[0].toISOString().split('T')[0] !== '1925-01-01') {
+                instance.altInput.classList.remove('placeholder-style');
+            } else {
+                instance.altInput.classList.add('placeholder-style');
+            }
+        }
       });
     </script>
 </body>
