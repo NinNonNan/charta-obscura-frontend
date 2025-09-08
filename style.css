@@ -1,237 +1,233 @@
 /* Stili globali e sfondo */
 :root {
-  --page-bg: #4b4b4b; /* Non più usato per il body, ma mantenuto per chiarezza */
-  --form-bg: #fef3c7;
-  --text-dark: #2b2b2b;
-  --gold: #d4af37;
-  --gray-muted: #6b7280;
+  --page-bg: #4b4b4b;
+  --form-bg: #fef3c7;
+  --text-dark: #2b2b2b;
+  --gold: #d4af37;
+  --gray-muted: #6b7280;
 }
 
 /* Evita scroll orizzontale su tutta la pagina */
 html, body {
-  overflow-x: hidden;
-  box-sizing: border-box;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 *, *:before, *:after {
-  box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 body {
-  font-family: 'Cinzel', serif;
-  color: #f1e6c9;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  /* NUOVO SFONDO ART DECO IN CSS PURO - CHIARITO */
-  background-color: #5c4a37; /* Tono di base più chiaro */
-  background-image: repeating-conic-gradient(
-    from 0deg,
-    #7d6356 0% 10%, /* Tono più chiaro per il pattern */
-    transparent 10% 20%
-  );
-  background-size: 80px 80px;
-  /* FINE NUOVO SFONDO */
+  font-family: 'Cinzel', serif;
+  color: #f1e6c9;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  /* SFONDO ART DECO */
+  background-color: #5c4a37;
+  background-image: repeating-conic-gradient(
+    from 0deg,
+    #7d6356 0% 10%,
+    transparent 10% 20%
+  );
+  background-size: 80px 80px;
 }
 
 /* Header Fisso */
 .fixed-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #111;
-  padding: 15px 0;
-  border-bottom: 2px solid var(--gold);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #111;
+  padding: 15px 0;
+  border-bottom: 2px solid var(--gold);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .fixed-header button {
-  background: transparent;
-  color: #f1e6c9;
-  border: 2px solid var(--gold);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  background: transparent;
+  color: #f1e6c9;
+  border: 2px solid var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .fixed-header button:hover {
-  background: var(--gold);
-  color: #111;
+  background: var(--gold);
+  color: #111;
 }
 
 /* Contenitore Principale */
 .main-content {
-    width: 100%;
-    max-width: 840px;
-    margin: 0 auto;
-    padding: 2rem;
-    padding-top: calc(75px + 2rem + 50px);
-    min-height: calc(100vh - 75px);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+  width: 100%;
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-top: calc(75px + 2rem + 50px);
+  min-height: calc(100vh - 75px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 /* Stili del Form */
 .container {
-    max-width: 600px;
-    width: 100%;
-    position: relative;
-    margin: 0 auto;
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
 }
 
 .form-container {
-  border: 4px double #000;
-  padding: 2rem;
-  background: var(--form-bg);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  position: relative;
+  border: 4px double #000;
+  padding: 2rem;
+  background: var(--form-bg);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .form-container:before,
 .form-container:after {
-  content: "";
-  position: absolute;
-  border: 2px solid #000;
-  width: 30px;
-  height: 30px;
+  content: "";
+  position: absolute;
+  border: 2px solid #000;
+  width: 30px;
+  height: 30px;
 }
 
 .form-container:before {
-  top: -10px;
-  left: -10px;
-  border-right: none;
-  border-bottom: none;
+  top: -10px;
+  left: -10px;
+  border-right: none;
+  border-bottom: none;
 }
 
 .form-container:after {
-  bottom: -10px;
-  right: -10px;
-  border-left: none;
-  border-top: none;
+  bottom: -10px;
+  right: -10px;
+  border-left: none;
+  border-top: none;
 }
 
 h1 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 0.2rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--text-dark);
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-dark);
 }
 
 h2 {
-  text-align: center;
-  font-size: 1.2rem;
-  font-family: serif;
-  margin-bottom: 1.5rem;
-  font-style: italic;
-  color: var(--text-dark);
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: serif;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  color: var(--text-dark);
 }
 
 label {
-  display: block;
-  margin-top: 1rem;
-  font-size: 0.95rem;
-  letter-spacing: 1px;
-  color: var(--text-dark);
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  color: var(--text-dark);
 }
 
 input,
 select,
 textarea {
-  width: 100%;
-  padding: 0.4rem;
-  margin: 0.2rem 0 0 0;
-  border: 1px solid #444;
-  background: #fdfcf7;
-  font-family: serif;
-  font-size: 1rem;
-  color: var(--text-dark);
-  box-sizing: border-box;
+  width: 100%;
+  padding: 0.4rem;
+  margin: 0.2rem 0 0 0;
+  border: 1px solid #444;
+  background: #fdfcf7;
+  font-family: serif;
+  font-size: 1rem;
+  color: var(--text-dark);
+  box-sizing: border-box;
 }
 
 button {
-  margin-top: 2rem;
-  padding: 0.6rem 1.5rem;
-  font-family: serif;
-  font-size: 1rem;
-  background: #000;
-  color: #f7f3e9;
-  border: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  margin-top: 2rem;
+  padding: 0.6rem 1.5rem;
+  font-family: serif;
+  font-size: 1rem;
+  background: #000;
+  color: #f7f3e9;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 button:hover {
-  background: #444;
+  background: #444;
 }
 
 /* Stili per i placeholder */
 ::placeholder {
-  color: #a9a9a9;
-  font-style: italic;
+  color: #a9a9a9;
+  font-style: italic;
 }
 
 /* Stili per il widget del calendario (Flatpickr) */
 .flatpickr-calendar {
-  background: var(--form-bg);
-  border: 1px solid var(--text-dark);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  font-family: 'Cinzel', serif;
-  color: var(--text-dark);
+  background: var(--form-bg);
+  border: 1px solid var(--text-dark);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  font-family: 'Cinzel', serif;
+  color: var(--text-dark);
 }
 
-.flatpickr-day.selected, 
+.flatpickr-day.selected, 
 .flatpickr-day.selected:hover,
 .flatpickr-day.startRange,
 .flatpickr-day.endRange {
-  background: var(--gold) !important;
-  border-color: var(--gold) !important;
-  color: #fff !important;
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: #fff !important;
 }
 
-/* Stile per il giorno corrente, NON selezionato */
 .flatpickr-day.today:not(.selected) {
-    border-color: var(--text-dark) !important;
-    background: transparent !important;
-    color: var(--text-dark) !important;
+  border-color: var(--text-dark) !important;
+  background: transparent !important;
+  color: var(--text-dark) !important;
 }
 
-/* Stile per il giorno corrente quando selezionato */
 .flatpickr-day.today.selected {
-  background: var(--gold) !important;
-  border-color: var(--gold) !important;
-  color: #fff !important;
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: #fff !important;
 }
 
-/* Stile hover per i giorni non selezionati */
 .flatpickr-day:hover,
 .flatpickr-day:focus {
-  background: var(--gray-muted) !important;
-  color: #fff !important;
+  background: var(--gray-muted) !important;
+  color: #fff !important;
 }
 
 .flatpickr-current-month .flatpickr-monthDropdown-months,
 .flatpickr-current-month .numInputWrapper {
-  color: var(--text-dark);
+  color: var(--text-dark);
 }
 
 .flatpickr-weekday {
-  color: var(--text-dark);
+  color: var(--text-dark);
 }
 
 /* Nuova classe per il placeholder gestita da JavaScript */
 .placeholder-style {
-  color: #a9a9a9 !important;
-  font-style: italic !important;
+  color: #a9a9a9 !important;
+  font-style: italic !important;
 }
 
 /* Stili per il foglietto di benvenuto */
@@ -239,21 +235,21 @@ button:hover {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(-5deg); /* Leggera rotazione */
-    z-index: 2000; /* Assicura che sia sopra tutto il resto */
-    background-color: #fef3c7; /* Stesso sfondo del form */
-    color: #2b2b2b; /* Stesso colore del testo del form */
+    transform: translate(-50%, -50%) rotate(-5deg);
+    z-index: 2000;
+    background-color: #fef3c7;
+    color: #2b2b2b;
     border: 3px solid #000;
     padding: 2.5rem;
     max-width: 450px;
     text-align: center;
     cursor: pointer;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Ombra per profondità */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 #lettera-benvenuto p {
-    font-family: 'Dancing Script', cursive; /* Il font a mano */
+    font-family: 'Dancing Script', cursive;
     font-size: 1.8rem;
     line-height: 1.4;
     margin: 0;
@@ -262,7 +258,7 @@ button:hover {
 /* Stato nascosto (per lo script JS) */
 #lettera-benvenuto.hidden {
     opacity: 0;
-    pointer-events: none; /* Rimuove l'interazione dopo l'animazione */
+    pointer-events: none;
 }
 
 /* Classe per la sfocatura applicata tramite JavaScript */
@@ -273,78 +269,78 @@ button:hover {
 
 /* Responsive del form */
 @media (max-width: 600px) {
-  .fixed-header {
-    height: 60px;
-    padding: 10px 0;
-  }
+  .fixed-header {
+    height: 60px;
+    padding: 10px 0;
+  }
 
-  .fixed-header button {
-    padding: 8px 15px;
-    font-size: 0.9rem;
-  }
+  .fixed-header button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
 
-  body {
-    padding: 0;
-  }
-  
-  .main-content {
-    max-width: 100%;
-    width: 100%;
-    padding: 0.5rem;
-    padding-top: calc(60px + 0.5rem);
-    min-height: calc(100vh - 60px);
-  }
+  body {
+    padding: 0;
+  }
+  
+  .main-content {
+    max-width: 100%;
+    width: 100%;
+    padding: 0.5rem;
+    padding-top: calc(60px + 0.5rem);
+    min-height: calc(100vh - 60px);
+  }
 
-  .container {
-    max-width: 100%;
-    width: 100%;
-    margin: 0;
-  }
-  
-  .form-container {
-    border-width: 0;
-    box-shadow: none;
-    padding: 0.8rem;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    min-height: calc(100vh - 60px - 1rem);
-  }
-  
-  .form-container:before,
-  .form-container:after {
-    display: none;
-  }
+  .container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+  }
+  
+  .form-container {
+    border-width: 0;
+    box-shadow: none;
+    padding: 0.8rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: calc(100vh - 60px - 1rem);
+  }
+  
+  .form-container:before,
+  .form-container:after {
+    display: none;
+  }
 
-  h1 { font-size: 1.2rem; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
-  h2 { font-size: 0.9rem; margin-bottom: 1rem; }
-  label { font-size: 0.8rem; margin-top: 0.7rem; }
-  input, select, textarea { font-size: 0.85rem; padding: 0.3rem; margin: 0.1rem 0 0 0; }
-  button { width: 100%; font-size: 0.9rem; padding: 0.6rem; margin-top: 1.5rem; }
+  h1 { font-size: 1.2rem; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
+  h2 { font-size: 0.9rem; margin-bottom: 1rem; }
+  label { font-size: 0.8rem; margin-top: 0.7rem; }
+  input, select, textarea { font-size: 0.85rem; padding: 0.3rem; margin: 0.1rem 0 0 0; }
+  button { width: 100%; font-size: 0.9rem; padding: 0.6rem; margin-top: 1.5rem; }
 
-  /* Stili specifici per il foglietto di benvenuto su dispositivi mobili */
-  #lettera-benvenuto {
-    max-width: 90%;
-    width: auto;
-    padding: 1rem;
-    transform: translate(-50%, -50%) rotate(-3deg);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  }
-  #lettera-benvenuto p {
-    font-size: 1.1rem;
-  }
+  /* Stili specifici per il foglietto di benvenuto su dispositivi mobili */
+  #lettera-benvenuto {
+    max-width: 90%;
+    width: auto;
+    padding: 1rem;
+    transform: translate(-50%, -50%) rotate(-3deg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  #lettera-benvenuto p {
+    font-size: 1.1rem;
+  }
 }
 
 /* Modalità scura */
 @media screen and (prefers-color-scheme: dark) {
-  body {
-    background-color: #1a1a1a;
-    background-image: repeating-conic-gradient(
-      from 0deg,
-      #333 0% 10%,
-      transparent 10% 20%
-    );
-    background-size: 80px 80px;
-  }
+  body {
+    background-color: #1a1a1a;
+    background-image: repeating-conic-gradient(
+      from 0deg,
+      #333 0% 10%,
+      transparent 10% 20%
+    );
+    background-size: 80px 80px;
+  }
 }
