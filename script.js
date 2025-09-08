@@ -3,9 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx16pHzWINf93vLVvtCT0oclr0bNfLVSoNDBU_Isa-dHvI5tAr7Cu-2r-nZKgpxoNni/exec';
     
     // Riferimenti agli elementi principali
-    const contentWrapper = document.querySelector('.content-wrapper');
     const formContainer = document.getElementById('form-container');
     const dashboardContainer = document.getElementById('dashboard-content');
+    const blurredBackgroundOverlay = document.getElementById('blurred-background-overlay');
+    const contentContainer = document.getElementById('content-container'); // Nuovo
     const toggleViewBtn = document.getElementById('toggle-view');
     const nomeSocietaLabel = document.getElementById('nome-societa-label');
     const dataNascitaInput = document.getElementById('data_nascita');
@@ -21,8 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (letteraBenvenuto) {
         letteraBenvenuto.addEventListener('click', () => {
             letteraBenvenuto.classList.add('hidden');
-            if (contentWrapper) {
-                contentWrapper.classList.remove('is-blurred');
+            if (blurredBackgroundOverlay) {
+                blurredBackgroundOverlay.classList.add('no-blur'); // Rimuove la sfocatura dal background
+            }
+            if (formContainer) {
+                formContainer.classList.add('no-blur'); // Rimuove la sfocatura dal form
             }
         });
     }
@@ -36,15 +40,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const showDashboard = () => {
         formContainer.style.display = 'none';
         dashboardContainer.style.display = 'block';
-        contentWrapper.classList.remove('is-blurred');
-        letteraBenvenuto.style.display = 'none';
+        letteraBenvenuto.style.display = 'none'; // Nasconde il bigliettino
+        
+        // Rimuove la sfocatura se l'utente va alla dashboard
+        if (blurredBackgroundOverlay) {
+            blurredBackgroundOverlay.classList.add('no-blur');
+        }
+        if (formContainer) {
+            formContainer.classList.add('no-blur');
+        }
         toggleViewBtn.textContent = 'Vai al Form di Iscrizione';
     };
     
     const showForm = () => {
         dashboardContainer.style.display = 'none';
         formContainer.style.display = 'flex';
-        letteraBenvenuto.style.display = 'block';
+        letteraBenvenuto.style.display = 'block'; // Mostra il bigliettino
+        
+        // Applica la sfocatura quando si torna al form (se il bigliettino è ancora visibile)
+        if (!letteraBenvenuto.classList.contains('hidden')) {
+            if (blurredBackgroundOverlay) {
+                blurredBackgroundOverlay.classList.remove('no-blur');
+            }
+            if (formContainer) {
+                formContainer.classList.remove('no-blur');
+            }
+        }
         toggleViewBtn.textContent = 'Vai alla Dashboard';
     };
     
@@ -116,8 +137,4 @@ document.addEventListener('DOMContentLoaded', () => {
                 formResponse.innerHTML = `Errore: ${result.message}`;
             }
         })
-        .catch(error => {
-            formResponse.innerHTML = `Si è verificato un errore di rete: ${error}`;
-        });
-    });
-});
+        .
