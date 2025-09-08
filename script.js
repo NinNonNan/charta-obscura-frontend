@@ -99,3 +99,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 instance.altInput.classList.add('placeholder-style');
             }
         }
+    });
+    
+    // Logica di invio del form
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        formResponse.innerHTML = 'Invio in corso...';
+    
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+    
+        data.nome_societa = nomeSocieta;
+    
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            body: new URLSearchParams(data),
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.status === 'success') {
+                const formElements = form.querySelectorAll('label, input, textarea, button');
+                formElements.forEach(el => el.remove());
+                
+                const successMsg = `
+                    <div style="text-align: center; padding: 2rem; color: #333; background-color: #fff; border: 1px solid #ccc; border-radius: 8px;">
+                        <p style="font-size: 1.2rem; margin: 0;">Iscrizione completata con successo!</p>
+                        <p style="font-size: 1rem; margin-top: 1rem;">Accedi alla tua cartella personale: <br><a href="${result.folderUrl}" target="_blank" style="color: #6a0dad; text-decoration: underline;">QUI</a></p>
+                    </div>
+                `;
+                formResponse.innerHTML = successMsg;
+            } else {
+                formResponse.innerHTML = `Errore: ${result.message}`;
+            }
+        })
+        .catch(error => {
+            formResponse.innerHTML = `Si è verificato un errore di rete: ${error}`;
+        });
+    });
+});
