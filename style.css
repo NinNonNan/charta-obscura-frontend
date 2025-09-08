@@ -174,6 +174,12 @@ button:hover {
   background: #444;
 }
 
+/* Stili per i placeholder */
+::placeholder {
+  color: #a9a9a9;
+  font-style: italic;
+}
+
 /* Stili per il widget del calendario (Flatpickr) */
 .flatpickr-calendar {
   background: var(--form-bg);
@@ -192,11 +198,21 @@ button:hover {
   color: #fff;
 }
 
-.flatpickr-day.today {
-  border-color: var(--gold);
-  color: var(--gold);
+/* Stile per il giorno corrente */
+.flatpickr-day.today:not(.selected) {
+    border-color: var(--text-dark); /* Bordo scuro, si abbina al tema */
+    background: transparent;
+    color: var(--text-dark);
 }
 
+/* Stile per il giorno corrente selezionato */
+.flatpickr-day.today.selected {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+
+/* Stile hover per i giorni non selezionati */
 .flatpickr-day:hover,
 .flatpickr-day:focus {
   background: var(--gray-muted);
@@ -210,6 +226,17 @@ button:hover {
 
 .flatpickr-weekday {
   color: var(--text-dark);
+}
+
+/* Correzione per il colore del testo della data di default */
+input#data_nascita[value] {
+  color: #a9a9a9;
+  font-style: italic;
+}
+
+input#data_nascita.has-value {
+  color: var(--text-dark);
+  font-style: normal;
 }
 
 /* Responsive del form */
@@ -263,24 +290,6 @@ button:hover {
   label { font-size: 0.8rem; margin-top: 0.7rem; }
   input, select, textarea { font-size: 0.85rem; padding: 0.3rem; margin: 0.1rem 0 0 0; }
   button { width: 100%; font-size: 0.9rem; padding: 0.6rem; margin-top: 1.5rem; }
-}
-
-/* Stili per i placeholder */
-::placeholder {
-  color: #a9a9a9;
-  font-style: italic;
-}
-
-/* Stile per il testo pre-selezionato del campo data */
-.flatpickr-input[data-alt-input="true"] {
-  color: #a9a9a9;
-  font-style: italic;
-}
-
-/* Stile per il testo del campo data come placeholder */
-.placeholder-style {
-  color: #a9a9a9 !important;
-  font-style: italic !important;
 }
 
 /* Modalità scura */
