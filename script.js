@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx16pHzWINf93vLVvtCT0oclr0bNfLVSoNDBU_Isa-dHvI5tAr7Cu-2r-nZKgpxoNni/exec';
     
     // Riferimenti agli elementi principali
-    const formContainer = document.querySelector('.form-container');
+    const formContainer = document.getElementById('form-container');
     const dashboardContainer = document.getElementById('dashboard-content');
     const blurredBackgroundOverlay = document.getElementById('blurred-background-overlay');
     const toggleViewBtn = document.getElementById('toggle-view');
@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const nomeSocieta = urlParams.get('societa') || 'Codicillo di Turing';
     
-    // Al caricamento della pagina, applica le classi di sfocatura e mostra il biglietto
-    // in modo che l'effetto sia immediato.
+    // Al caricamento della pagina, applica le classi di sfocatura
     blurredBackgroundOverlay.classList.add('is-blurred');
     formContainer.classList.add('is-blurred');
 
@@ -38,36 +37,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Funzione per mostrare la dashboard e nascondere il form
     const showDashboard = () => {
-        formContainer.style.display = 'none';
-        dashboardContainer.style.display = 'flex';
+        formContainer.classList.add('hidden');
+        dashboardContainer.classList.remove('hidden');
         blurredBackgroundOverlay.classList.remove('is-blurred');
         formContainer.classList.remove('is-blurred');
-        letteraBenvenuto.style.display = 'none';
+        letteraBenvenuto.classList.add('hidden');
         toggleViewBtn.textContent = 'Vai al Form di Iscrizione';
     };
     
     // Funzione per mostrare il form e nascondere la dashboard
     const showForm = () => {
-        dashboardContainer.style.display = 'none';
-        formContainer.style.display = 'flex';
+        dashboardContainer.classList.add('hidden');
+        formContainer.classList.remove('hidden');
         
         // Se il biglietto è ancora visibile (non cliccato), applica la sfocatura
         if (!letteraBenvenuto.classList.contains('hidden')) {
             blurredBackgroundOverlay.classList.add('is-blurred');
             formContainer.classList.add('is-blurred');
-            letteraBenvenuto.style.display = 'block';
+            letteraBenvenuto.classList.remove('hidden');
         } else {
             // Se il biglietto è già stato cliccato, mostra il form senza sfocatura
             blurredBackgroundOverlay.classList.remove('is-blurred');
             formContainer.classList.remove('is-blurred');
-            letteraBenvenuto.style.display = 'none';
+            letteraBenvenuto.classList.add('hidden');
         }
         toggleViewBtn.textContent = 'Vai alla Dashboard';
     };
+
+    // Aggiungi la classe hidden alla dashboard all'avvio per nasconderla
+    dashboardContainer.classList.add('hidden');
     
     // Evento per il cambio di sezione
     toggleViewBtn.addEventListener('click', () => {
-        if (formContainer.style.display === 'none') {
+        if (formContainer.classList.contains('hidden')) {
             showForm();
         } else {
             showDashboard();
