@@ -189,16 +189,16 @@ button:hover {
   color: var(--text-dark);
 }
 
-/* Correzione del colore del testo dell'input Flatpickr */
-.flatpickr-input {
-    color: var(--text-dark);
-    font-style: normal;
-}
-
 /* Stile per il testo pre-selezionato (placeholder) */
-.flatpickr-input.placeholder-style {
+.flatpickr-input[value="01/01/1925"] {
   color: #a9a9a9 !important;
   font-style: italic !important;
+}
+
+/* Stile per il testo quando l'utente seleziona una data */
+.flatpickr-input:not([value="01/01/1925"]) {
+  color: var(--text-dark) !important;
+  font-style: normal !important;
 }
 
 .flatpickr-day.selected, 
