@@ -330,7 +330,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    /* Rimuovo anche qui il min-height che causava problemi su mobile */
+    min-height: calc(100vh - 60px - (2 * 0.8rem) - 0.5rem);
   }
   
   .form-container:before,
