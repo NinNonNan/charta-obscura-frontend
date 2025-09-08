@@ -39,7 +39,7 @@
                     <input type="text" id="luogo_nascita" name="luogo_nascita" required placeholder="Es. Londra">
                     
                     <label for="data_nascita">Data di Nascita</label>
-                    <input type="text" id="data_nascita" name="data_nascita" placeholder="gg/mm/aaaa" required>
+                    <input type="text" id="data_nascita" name="data_nascita" value="01/01/1925" required>
                     
                     <label for="professione">Professione</label>
                     <input type="text" id="professione" name="professione" required placeholder="Es. Investigatore">
@@ -60,6 +60,7 @@
     
     <div id="dashboard-content" class="main-content" style="display:none;">
     </div>
+    
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
@@ -70,17 +71,7 @@
         defaultDate: "01/01/1925",
         altInput: true,
         altFormat: "d F Y",
-        "disableMobile": "true",
-        onOpen: function(selectedDates, dateStr, instance) {
-          instance.input.classList.add('placeholder-style');
-        },
-        onClose: function(selectedDates, dateStr, instance) {
-          if (dateStr === "01/01/1925") {
-            instance.input.classList.add('placeholder-style');
-          } else {
-            instance.input.classList.remove('placeholder-style');
-          }
-        }
+        "disableMobile": "true"
       });
     </script>
 </body>
