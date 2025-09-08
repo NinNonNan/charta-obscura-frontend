@@ -189,25 +189,13 @@ button:hover {
   color: var(--text-dark);
 }
 
-/* Stile per il testo pre-selezionato (placeholder) */
-.flatpickr-input.placeholder-style {
-  color: #a9a9a9 !important;
-  font-style: italic !important;
-}
-
-/* Stile per il testo quando l'utente seleziona una data */
-.flatpickr-input:not(.placeholder-style) {
-  color: var(--text-dark);
-  font-style: normal;
-}
-
 .flatpickr-day.selected, 
 .flatpickr-day.selected:hover,
 .flatpickr-day.startRange,
 .flatpickr-day.endRange {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: #fff;
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: #fff !important;
 }
 
 /* Stile per il giorno corrente, NON selezionato */
@@ -227,8 +215,8 @@ button:hover {
 /* Stile hover per i giorni non selezionati */
 .flatpickr-day:hover,
 .flatpickr-day:focus {
-  background: var(--gray-muted);
-  color: #fff;
+  background: var(--gray-muted) !important;
+  color: #fff !important;
 }
 
 .flatpickr-current-month .flatpickr-monthDropdown-months,
@@ -238,6 +226,12 @@ button:hover {
 
 .flatpickr-weekday {
   color: var(--text-dark);
+}
+
+/* Nuova classe per il placeholder gestita da JavaScript */
+.placeholder-style {
+  color: #a9a9a9 !important;
+  font-style: italic !important;
 }
 
 /* Responsive del form */
