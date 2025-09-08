@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..700&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
 
@@ -38,7 +39,7 @@
                     <input type="text" id="luogo_nascita" name="luogo_nascita" required>
                     
                     <label for="data_nascita">Data di Nascita</label>
-                    <input type="date" id="data_nascita" name="data_nascita" required>
+                    <input type="text" id="data_nascita" name="data_nascita" placeholder="gg/mm/aaaa" required>
                     
                     <label for="professione">Professione</label>
                     <input type="text" id="professione" name="professione" required>
@@ -61,5 +62,16 @@
     </div>
     
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
+    <script>
+      flatpickr("#data_nascita", {
+        locale: "it",
+        dateFormat: "d/m/Y",
+        altInput: true,
+        altFormat: "d F Y",
+        "disableMobile": "true"
+      });
+    </script>
 </body>
 </html>
