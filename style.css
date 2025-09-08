@@ -28,6 +28,12 @@ body {
   position: relative; /* Necessario per posizionare l'overlay */
 }
 
+/* Classe per la sfocatura dinamica */
+.is-blurred {
+    filter: blur(5px);
+    transition: filter 0.5s ease-in-out;
+}
+
 /* Overlay per il background sfocato */
 #blurred-background-overlay {
     position: fixed;
@@ -43,12 +49,6 @@ body {
       transparent 10% 20%
     );
     background-size: 80px 80px;
-    filter: blur(5px); /* Inizialmente sfocato */
-    transition: filter 0.5s ease-in-out;
-}
-
-#blurred-background-overlay.no-blur {
-    filter: none;
 }
 
 /* Header Fisso */
@@ -116,14 +116,8 @@ body {
   background: var(--form-bg);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   position: relative;
-  filter: blur(5px); /* Inizialmente sfocato */
   transition: filter 0.5s ease-in-out;
 }
-
-.form-container.no-blur {
-    filter: none;
-}
-
 
 .form-container:before,
 .form-container:after {
