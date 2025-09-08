@@ -86,7 +86,6 @@ body {
 #content-container {
     position: relative;
     z-index: 5; /* Sopra l'overlay di sfondo, sotto il bigliettino */
-    /* RIPRISTINATO IL VALORE ORIGINALE PER IL DESKTOP */
     padding-top: calc(75px + 2rem); 
 }
 
@@ -97,7 +96,6 @@ body {
   max-width: 840px;
   margin: 0 auto;
   padding: 2rem;
-  /* Rimosso il min-height per il desktop per evitare problemi di scroll */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -310,14 +308,17 @@ button:hover {
     padding: 0;
   }
   
+  #content-container {
+    /* Rimuovo il padding-top dal contenitore principale su mobile */
+    padding-top: 0;
+  }
+
   .main-content {
     max-width: 100%;
     width: 100%;
+    /* Rimuovo il padding-top dal main-content per evitare duplicazioni */
     padding: 0.5rem;
-    /* CORREZIONE PER MOBILE: Attacchiamo il form all'header */
-    padding-top: calc(60px + 0.5rem);
-    /* CALCOLO CORRETTO DELL'ALTEZZA PER RIMUOVERE LO SCROLL */
-    min-height: calc(100vh - 60px); 
+    min-height: calc(100vh - 60px - 1rem); /* CORREZIONE CRUCIALE */
   }
 
   .container {
