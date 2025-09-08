@@ -86,7 +86,7 @@ body {
 #content-container {
     position: relative;
     z-index: 5; /* Sopra l'overlay di sfondo, sotto il bigliettino */
-    padding-top: calc(75px + 2rem); /* Spazio per l'header fisso */
+    padding-top: calc(75px + 1rem); 
 }
 
 
@@ -96,7 +96,6 @@ body {
   max-width: 840px;
   margin: 0 auto;
   padding: 2rem;
-  /* Rimuovo il min-height che causava problemi su desktop */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -313,7 +312,8 @@ button:hover {
     max-width: 100%;
     width: 100%;
     padding: 0.5rem;
-    padding-top: calc(60px + 0.5rem);
+    /* CORREZIONE PER MOBILE: Attacchiamo il form all'header */
+    padding-top: calc(60px + 0.5rem); 
   }
 
   .container {
@@ -330,7 +330,6 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    min-height: calc(100vh - 60px - (2 * 0.8rem) - 0.5rem);
   }
   
   .form-container:before,
