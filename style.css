@@ -184,9 +184,21 @@ button:hover {
 .flatpickr-calendar {
   background: var(--form-bg);
   border: 1px solid var(--text-dark);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   font-family: 'Cinzel', serif;
   color: var(--text-dark);
+}
+
+/* Correzione del colore del testo dell'input Flatpickr */
+.flatpickr-input {
+    color: var(--text-dark);
+    font-style: normal;
+}
+
+/* Stile per il testo pre-selezionato (placeholder) */
+.flatpickr-input.placeholder-style {
+  color: #a9a9a9 !important;
+  font-style: italic !important;
 }
 
 .flatpickr-day.selected, 
@@ -198,18 +210,18 @@ button:hover {
   color: #fff;
 }
 
-/* Stile per il giorno corrente */
+/* Stile per il giorno corrente, NON selezionato */
 .flatpickr-day.today:not(.selected) {
-    border-color: var(--text-dark); /* Bordo scuro, si abbina al tema */
-    background: transparent;
-    color: var(--text-dark);
+    border-color: var(--text-dark) !important;
+    background: transparent !important;
+    color: var(--text-dark) !important;
 }
 
-/* Stile per il giorno corrente selezionato */
+/* Stile per il giorno corrente quando selezionato */
 .flatpickr-day.today.selected {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: #fff;
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: #fff !important;
 }
 
 /* Stile hover per i giorni non selezionati */
@@ -226,17 +238,6 @@ button:hover {
 
 .flatpickr-weekday {
   color: var(--text-dark);
-}
-
-/* Correzione per il colore del testo della data di default */
-input#data_nascita[value] {
-  color: #a9a9a9;
-  font-style: italic;
-}
-
-input#data_nascita.has-value {
-  color: var(--text-dark);
-  font-style: normal;
 }
 
 /* Responsive del form */
