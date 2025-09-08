@@ -17,27 +17,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const nomeSocieta = urlParams.get('societa') || 'Codicillo di Turing';
     
-    // Funzione per applicare l'effetto di sfocatura
-    const applyBlurEffect = () => {
+    // Applica l'effetto di sfocatura all'avvio della pagina del form
+    if (formContainer) {
         blurredBackgroundOverlay.classList.add('is-blurred');
         formContainer.classList.add('is-blurred');
-        letteraBenvenuto.style.display = 'block';
-    };
+    }
 
-    // Funzione per rimuovere l'effetto di sfocatura
-    const removeBlurEffect = () => {
-        blurredBackgroundOverlay.classList.remove('is-blurred');
-        formContainer.classList.remove('is-blurred');
-        letteraBenvenuto.classList.add('hidden');
-    };
-
-    // Applica l'effetto di sfocatura all'avvio (solo per la pagina del form)
-    applyBlurEffect();
-    
-    // Evento per nascondere il foglietto e rimuovere la sfocatura
+    // Evento per nascondere il biglietto e rimuovere la sfocatura
     if (letteraBenvenuto) {
         letteraBenvenuto.addEventListener('click', () => {
-            removeBlurEffect();
+            letteraBenvenuto.classList.add('hidden');
+            if (blurredBackgroundOverlay) {
+                blurredBackgroundOverlay.classList.remove('is-blurred');
+            }
+            if (formContainer) {
+                formContainer.classList.remove('is-blurred');
+            }
         });
     }
 
@@ -46,22 +41,27 @@ document.addEventListener('DOMContentLoaded', () => {
         nomeSocietaLabel.textContent = nomeSocieta;
     }
 
-    // Funzione per cambiare la sezione visibile
+    // Funzione per mostrare la dashboard e nascondere il form
     const showDashboard = () => {
         formContainer.style.display = 'none';
-        dashboardContainer.style.display = 'flex'; // Usare flex per centrare
-        blurredBackgroundOverlay.style.display = 'none';
+        dashboardContainer.style.display = 'flex';
+        blurredBackgroundOverlay.classList.remove('is-blurred');
+        formContainer.classList.remove('is-blurred');
         letteraBenvenuto.style.display = 'none';
         toggleViewBtn.textContent = 'Vai al Form di Iscrizione';
     };
     
+    // Funzione per mostrare il form e nascondere la dashboard
     const showForm = () => {
         dashboardContainer.style.display = 'none';
         formContainer.style.display = 'flex';
-        blurredBackgroundOverlay.style.display = 'block';
+        // Mantiene la sfocatura solo se il biglietto non è ancora stato cliccato
+        if (!letteraBenvenuto.classList.contains('hidden')) {
+            blurredBackgroundOverlay.classList.add('is-blurred');
+            formContainer.classList.add('is-blurred');
+        }
+        letteraBenvenuto.style.display = 'block';
         toggleViewBtn.textContent = 'Vai alla Dashboard';
-        // Applica di nuovo la sfocatura quando si torna al form
-        applyBlurEffect();
     };
     
     // Evento per il cambio di sezione
