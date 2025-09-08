@@ -265,6 +265,12 @@ button:hover {
   button { width: 100%; font-size: 0.9rem; padding: 0.6rem; margin-top: 1.5rem; }
 }
 
+/* Stili per i placeholder */
+::placeholder {
+  color: #a9a9a9;
+  font-style: italic;
+}
+
 /* Modalità scura */
 @media screen and (prefers-color-scheme: dark) {
   body {
