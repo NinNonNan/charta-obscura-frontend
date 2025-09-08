@@ -39,7 +39,7 @@
                     <input type="text" id="luogo_nascita" name="luogo_nascita" required placeholder="Es. Londra">
                     
                     <label for="data_nascita">Data di Nascita</label>
-                    <input type="text" id="data_nascita" name="data_nascita" placeholder="01/01/1925" required>
+                    <input type="text" id="data_nascita" name="data_nascita" required>
                     
                     <label for="professione">Professione</label>
                     <input type="text" id="professione" name="professione" required placeholder="Es. Investigatore">
@@ -65,29 +65,33 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
     <script>
-      flatpickr("#data_nascita", {
+      const dataNascitaInput = document.getElementById('data_nascita');
+      
+      // Calcola l'anno di 100 anni fa
+      const yearMinus100 = new Date().getFullYear() - 100;
+      const defaultPlaceholderDate = "01/01/" + yearMinus100;
+      const defaultDate = new Date(yearMinus100, 0, 1);
+
+      // Inizializza Flatpickr
+      flatpickr(dataNascitaInput, {
         locale: "it",
         dateFormat: "d/m/Y",
         altInput: true,
         altFormat: "d F Y",
         "disableMobile": "true",
-        onOpen: function(selectedDates, dateStr, instance) {
-          // Rimuove il placeholder quando il calendario si apre
-          instance.altInput.placeholder = "";
-          instance.altInput.classList.remove('placeholder-style');
-        },
-        onClose: function(selectedDates, dateStr, instance) {
-          // Ripristina il placeholder se l'input è vuoto
-          if (!instance.altInput.value) {
-            instance.altInput.placeholder = "01/01/1925";
-            instance.altInput.classList.add('placeholder-style');
-          }
+        defaultDate: defaultDate, // Imposta la data predefinita (anno-100)
+        onReady: function(selectedDates, dateStr, instance) {
+          // Imposta lo stile del placeholder all'avvio
+          instance.altInput.placeholder = defaultPlaceholderDate;
+          instance.altInput.classList.add('placeholder-style');
         },
         onChange: function(selectedDates, dateStr, instance) {
-          // Gestisce lo stile del testo
-          if (dateStr && instance.altInput.value !== instance.altInput.placeholder) {
-            instance.altInput.style.color = 'var(--text-dark)';
-            instance.altInput.style.fontStyle = 'normal';
+          // Rimuovi lo stile del placeholder quando una data viene selezionata
+          if (dateStr) {
+            instance.altInput.classList.remove('placeholder-style');
+          } else {
+            // Se l'utente cancella la data, ripristina il placeholder
+            instance.altInput.classList.add('placeholder-style');
           }
         }
       });
