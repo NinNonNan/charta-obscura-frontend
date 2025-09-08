@@ -23,11 +23,11 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  /* NUOVO SFONDO ART DECO IN CSS PURO */
-  background-color: #3e2723;
+  /* NUOVO SFONDO ART DECO IN CSS PURO - CHIARITO */
+  background-color: #5c4a37; /* Tono di base più chiaro */
   background-image: repeating-conic-gradient(
     from 0deg,
-    #5c4a37 0% 10%,
+    #7d6356 0% 10%, /* Tono più chiaro per il pattern */
     transparent 10% 20%
   );
   background-size: 80px 80px;
