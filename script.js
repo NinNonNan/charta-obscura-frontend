@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx16pHzWINf93vLVvtCT0oclr0bNfLVSoNDBU_Isa-dHvI5tAr7Cu-2r-nZKgpxoNni/exec';
     
     // Riferimenti agli elementi principali
-    const formContainer = document.getElementById('form-container');
+    const formContainer = document.querySelector('.form-container');
     const dashboardContainer = document.getElementById('dashboard-content');
     const blurredBackgroundOverlay = document.getElementById('blurred-background-overlay');
     const toggleViewBtn = document.getElementById('toggle-view');
@@ -17,20 +17,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const nomeSocieta = urlParams.get('societa') || 'Codicillo di Turing';
     
-    // Al caricamento della pagina, applica le classi di sfocatura
-    blurredBackgroundOverlay.classList.add('is-blurred');
-    formContainer.classList.add('is-blurred');
+    // Funzione per applicare l'effetto di sfocatura
+    const applyBlurEffect = () => {
+        blurredBackgroundOverlay.classList.add('is-blurred');
+        formContainer.classList.add('is-blurred');
+        letteraBenvenuto.style.display = 'block';
+    };
 
+    // Funzione per rimuovere l'effetto di sfocatura
+    const removeBlurEffect = () => {
+        blurredBackgroundOverlay.classList.remove('is-blurred');
+        formContainer.classList.remove('is-blurred');
+        letteraBenvenuto.classList.add('hidden');
+    };
+
+    // Applica l'effetto di sfocatura all'avvio (solo per la pagina del form)
+    applyBlurEffect();
+    
     // Evento per nascondere il foglietto e rimuovere la sfocatura
     if (letteraBenvenuto) {
         letteraBenvenuto.addEventListener('click', () => {
-            letteraBenvenuto.classList.add('hidden');
-            if (blurredBackgroundOverlay) {
-                blurredBackgroundOverlay.classList.remove('is-blurred');
-            }
-            if (formContainer) {
-                formContainer.classList.remove('is-blurred');
-            }
+            removeBlurEffect();
         });
     }
 
@@ -42,16 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Funzione per cambiare la sezione visibile
     const showDashboard = () => {
         formContainer.style.display = 'none';
-        dashboardContainer.style.display = 'block';
-        letteraBenvenuto.style.display = 'none'; 
+        dashboardContainer.style.display = 'flex'; // Usare flex per centrare
+        blurredBackgroundOverlay.style.display = 'none';
+        letteraBenvenuto.style.display = 'none';
         toggleViewBtn.textContent = 'Vai al Form di Iscrizione';
     };
     
     const showForm = () => {
         dashboardContainer.style.display = 'none';
         formContainer.style.display = 'flex';
-        letteraBenvenuto.style.display = 'block';
+        blurredBackgroundOverlay.style.display = 'block';
         toggleViewBtn.textContent = 'Vai alla Dashboard';
+        // Applica di nuovo la sfocatura quando si torna al form
+        applyBlurEffect();
     };
     
     // Evento per il cambio di sezione
@@ -89,41 +99,3 @@ document.addEventListener('DOMContentLoaded', () => {
                 instance.altInput.classList.add('placeholder-style');
             }
         }
-    });
-    
-    // Logica di invio del form
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        formResponse.innerHTML = 'Invio in corso...';
-    
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-    
-        data.nome_societa = nomeSocieta;
-    
-        fetch(SCRIPT_URL, {
-            method: 'POST',
-            body: new URLSearchParams(data),
-        })
-        .then(response => response.json())
-        .then(result => {
-            if (result.status === 'success') {
-                const formElements = form.querySelectorAll('label, input, textarea, button');
-                formElements.forEach(el => el.remove());
-                
-                const successMsg = `
-                    <div style="text-align: center; padding: 2rem; color: #333; background-color: #fff; border: 1px solid #ccc; border-radius: 8px;">
-                        <p style="font-size: 1.2rem; margin: 0;">Iscrizione completata con successo!</p>
-                        <p style="font-size: 1rem; margin-top: 1rem;">Accedi alla tua cartella personale: <br><a href="${result.folderUrl}" target="_blank" style="color: #6a0dad; text-decoration: underline;">QUI</a></p>
-                    </div>
-                `;
-                formResponse.innerHTML = successMsg;
-            } else {
-                formResponse.innerHTML = `Errore: ${result.message}`;
-            }
-        })
-        .catch(error => {
-            formResponse.innerHTML = `Si è verificato un errore di rete: ${error}`;
-        });
-    });
-});
