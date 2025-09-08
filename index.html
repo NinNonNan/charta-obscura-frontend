@@ -60,7 +60,6 @@
     
     <div id="dashboard-content" class="main-content" style="display:none;">
     </div>
-    
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
@@ -68,24 +67,20 @@
       flatpickr("#data_nascita", {
         locale: "it",
         dateFormat: "d/m/Y",
+        defaultDate: "01/01/1925",
         altInput: true,
         altFormat: "d F Y",
         "disableMobile": "true",
-        // Usiamo placeholder per definire la data iniziale. 
-        // Flatpickr caricherà il calendario su questa data la prima volta.
-        defaultDate: "01/01/1925" // Mantengo defaultDate per puntare il calendario al 1925
-      });
-      
-      // Funzione per impostare il placeholder dopo l'inizializzazione di Flatpickr
-      // Questa è la soluzione più affidabile per forzare lo stile placeholder
-      document.getElementById('data_nascita').placeholder = "01/01/1925";
-      document.getElementById('data_nascita').value = ""; // Lascia il campo vuoto per mostrare il placeholder
-      
-      // Aggiungo un listener per ripristinare il placeholder se l'utente svuota il campo
-      document.getElementById('data_nascita').addEventListener('change', function() {
-          if (this.value === "") {
-              this.placeholder = "01/01/1925";
+        onOpen: function(selectedDates, dateStr, instance) {
+          instance.input.classList.add('placeholder-style');
+        },
+        onClose: function(selectedDates, dateStr, instance) {
+          if (dateStr === "01/01/1925") {
+            instance.input.classList.add('placeholder-style');
+          } else {
+            instance.input.classList.remove('placeholder-style');
           }
+        }
       });
     </script>
 </body>
