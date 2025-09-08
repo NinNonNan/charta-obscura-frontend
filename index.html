@@ -71,8 +71,21 @@
         altInput: true,
         altFormat: "d F Y",
         "disableMobile": "true",
-        placeholder: "01/01/1925",
-        defaultDate: "1925-01-01" 
+        // Usiamo placeholder per definire la data iniziale. 
+        // Flatpickr caricherà il calendario su questa data la prima volta.
+        defaultDate: "01/01/1925" // Mantengo defaultDate per puntare il calendario al 1925
+      });
+      
+      // Funzione per impostare il placeholder dopo l'inizializzazione di Flatpickr
+      // Questa è la soluzione più affidabile per forzare lo stile placeholder
+      document.getElementById('data_nascita').placeholder = "01/01/1925";
+      document.getElementById('data_nascita').value = ""; // Lascia il campo vuoto per mostrare il placeholder
+      
+      // Aggiungo un listener per ripristinare il placeholder se l'utente svuota il campo
+      document.getElementById('data_nascita').addEventListener('change', function() {
+          if (this.value === "") {
+              this.placeholder = "01/01/1925";
+          }
       });
     </script>
 </body>
