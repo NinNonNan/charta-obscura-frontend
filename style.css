@@ -309,14 +309,12 @@ button:hover {
   }
   
   #content-container {
-    /* Rimuovo il padding-top dal contenitore principale su mobile */
-    padding-top: 0;
+    padding-top: calc(60px + 0.5rem);
   }
 
   .main-content {
     max-width: 100%;
     width: 100%;
-    /* Rimuovo il padding-top dal main-content per evitare duplicazioni */
     padding: 0.5rem;
     min-height: calc(100vh - 60px - 1rem); /* CORREZIONE CRUCIALE */
   }
