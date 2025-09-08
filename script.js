@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const formContainer = document.getElementById('form-container');
     const dashboardContainer = document.getElementById('dashboard-content');
     const blurredBackgroundOverlay = document.getElementById('blurred-background-overlay');
-    const contentContainer = document.getElementById('content-container'); // Nuovo
     const toggleViewBtn = document.getElementById('toggle-view');
     const nomeSocietaLabel = document.getElementById('nome-societa-label');
     const dataNascitaInput = document.getElementById('data_nascita');
@@ -18,15 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const nomeSocieta = urlParams.get('societa') || 'Codicillo di Turing';
     
+    // Al caricamento della pagina, applica le classi di sfocatura
+    blurredBackgroundOverlay.classList.add('is-blurred');
+    formContainer.classList.add('is-blurred');
+
     // Evento per nascondere il foglietto e rimuovere la sfocatura
     if (letteraBenvenuto) {
         letteraBenvenuto.addEventListener('click', () => {
             letteraBenvenuto.classList.add('hidden');
             if (blurredBackgroundOverlay) {
-                blurredBackgroundOverlay.classList.add('no-blur'); // Rimuove la sfocatura dal background
+                blurredBackgroundOverlay.classList.remove('is-blurred');
             }
             if (formContainer) {
-                formContainer.classList.add('no-blur'); // Rimuove la sfocatura dal form
+                formContainer.classList.remove('is-blurred');
             }
         });
     }
@@ -40,32 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const showDashboard = () => {
         formContainer.style.display = 'none';
         dashboardContainer.style.display = 'block';
-        letteraBenvenuto.style.display = 'none'; // Nasconde il bigliettino
-        
-        // Rimuove la sfocatura se l'utente va alla dashboard
-        if (blurredBackgroundOverlay) {
-            blurredBackgroundOverlay.classList.add('no-blur');
-        }
-        if (formContainer) {
-            formContainer.classList.add('no-blur');
-        }
+        letteraBenvenuto.style.display = 'none'; 
         toggleViewBtn.textContent = 'Vai al Form di Iscrizione';
     };
     
     const showForm = () => {
         dashboardContainer.style.display = 'none';
         formContainer.style.display = 'flex';
-        letteraBenvenuto.style.display = 'block'; // Mostra il bigliettino
-        
-        // Applica la sfocatura quando si torna al form (se il bigliettino è ancora visibile)
-        if (!letteraBenvenuto.classList.contains('hidden')) {
-            if (blurredBackgroundOverlay) {
-                blurredBackgroundOverlay.classList.remove('no-blur');
-            }
-            if (formContainer) {
-                formContainer.classList.remove('no-blur');
-            }
-        }
+        letteraBenvenuto.style.display = 'block';
         toggleViewBtn.textContent = 'Vai alla Dashboard';
     };
     
@@ -137,4 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 formResponse.innerHTML = `Errore: ${result.message}`;
             }
         })
-        .
+        .catch(error => {
+            formResponse.innerHTML = `Si è verificato un errore di rete: ${error}`;
+        });
+    });
+});
