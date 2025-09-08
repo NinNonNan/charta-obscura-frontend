@@ -274,17 +274,15 @@ button:hover {
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
-#lettera-benvenuto p {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.8rem;
-    line-height: 1.4;
-    margin: 0;
-}
-
 /* Stato nascosto (per lo script JS) */
 #lettera-benvenuto.hidden {
     opacity: 0;
     pointer-events: none;
+}
+
+/* Classe per nascondere gli elementi */
+.hidden {
+    display: none !important;
 }
 
 /* Responsive del form */
