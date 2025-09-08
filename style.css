@@ -23,14 +23,32 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  /* SFONDO ART DECO */
+  /* SFONDO DI BASE per evitare vuoti */
   background-color: #5c4a37;
-  background-image: repeating-conic-gradient(
-    from 0deg,
-    #7d6356 0% 10%,
-    transparent 10% 20%
-  );
-  background-size: 80px 80px;
+  position: relative; /* Necessario per posizionare l'overlay */
+}
+
+/* Overlay per il background sfocato */
+#blurred-background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Sotto l'header e il foglietto */
+    background-color: #5c4a37;
+    background-image: repeating-conic-gradient(
+      from 0deg,
+      #7d6356 0% 10%,
+      transparent 10% 20%
+    );
+    background-size: 80px 80px;
+    filter: blur(5px); /* Inizialmente sfocato */
+    transition: filter 0.5s ease-in-out;
+}
+
+#blurred-background-overlay.no-blur {
+    filter: none;
 }
 
 /* Header Fisso */
@@ -39,10 +57,10 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background: #111;
+  background: rgba(17, 17, 17, 0.8); /* Reso semitrasparente */
   padding: 15px 0;
   border-bottom: 2px solid var(--gold);
-  z-index: 1000;
+  z-index: 1000; /* Sopra tutto */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,17 +82,13 @@ body {
   color: #111;
 }
 
-/* Contenitore principale che gestisce la sfocatura */
-.content-wrapper {
-  transition: filter 0.5s ease-in-out;
-  min-height: 100vh;
-  padding-top: calc(75px + 2rem + 50px); /* Regola lo spazio superiore per il contenuto */
+/* Contenitore principale che contiene form e dashboard */
+#content-container {
+    position: relative;
+    z-index: 5; /* Sopra l'overlay di sfondo, sotto il bigliettino */
+    padding-top: calc(75px + 2rem); /* Spazio per l'header fisso */
 }
 
-/* Classe per la sfocatura applicata tramite JavaScript */
-.content-wrapper.is-blurred {
-    filter: blur(5px);
-}
 
 /* Contenitore Principale delle sezioni (Form e Dashboard) */
 .main-content {
@@ -82,7 +96,7 @@ body {
   max-width: 840px;
   margin: 0 auto;
   padding: 2rem;
-  min-height: calc(100vh - 75px);
+  min-height: calc(100vh - 75px - 2rem); /* Ricalcolato per l'header */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -102,7 +116,14 @@ body {
   background: var(--form-bg);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   position: relative;
+  filter: blur(5px); /* Inizialmente sfocato */
+  transition: filter 0.5s ease-in-out;
 }
+
+.form-container.no-blur {
+    filter: none;
+}
+
 
 .form-container:before,
 .form-container:after {
@@ -247,7 +268,7 @@ button:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-5deg);
-    z-index: 2000;
+    z-index: 2000; /* Sopra tutto */
     background-color: #fef3c7;
     color: #2b2b2b;
     border: 3px solid #000;
@@ -341,11 +362,13 @@ button:hover {
 @media screen and (prefers-color-scheme: dark) {
   body {
     background-color: #1a1a1a;
+  }
+  #blurred-background-overlay {
+    background-color: #1a1a1a;
     background-image: repeating-conic-gradient(
       from 0deg,
       #333 0% 10%,
       transparent 10% 20%
     );
-    background-size: 80px 80px;
   }
 }
