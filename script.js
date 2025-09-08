@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Riferimenti agli elementi principali
     const formContainer = document.getElementById('form-container');
     const dashboardContainer = document.getElementById('dashboard-content');
-    const mainContent = document.querySelector('.main-content');
+    const overlayContainer = document.getElementById('overlay-container');
     const toggleViewBtn = document.getElementById('toggle-view');
     const nomeSocietaLabel = document.getElementById('nome-societa-label');
     const dataNascitaInput = document.getElementById('data_nascita');
@@ -17,17 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const nomeSocieta = urlParams.get('societa') || 'Codicillo di Turing';
     
-    // Aggiungi la sfocatura iniziale
-    if (mainContent) {
-        mainContent.classList.add('is-blurred');
-    }
-
     // Evento per nascondere il foglietto e rimuovere la sfocatura
     if (letteraBenvenuto) {
         letteraBenvenuto.addEventListener('click', () => {
             letteraBenvenuto.classList.add('hidden');
-            if (mainContent) {
-                mainContent.classList.remove('is-blurred');
+            if (overlayContainer) {
+                overlayContainer.classList.remove('is-blurred');
             }
         });
     }
@@ -41,13 +36,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const showDashboard = () => {
         formContainer.style.display = 'none';
         dashboardContainer.style.display = 'block';
+        overlayContainer.style.display = 'none'; // Nasconde il contenitore del form
         toggleViewBtn.textContent = 'Vai al Form di Iscrizione';
     };
     
     const showForm = () => {
         dashboardContainer.style.display = 'none';
         formContainer.style.display = 'flex';
+        overlayContainer.style.display = 'flex'; // Mostra il contenitore del form
         toggleViewBtn.textContent = 'Vai alla Dashboard';
+        
+        // La sfocatura è presente all'inizio, quindi non c'è bisogno di aggiungerla
+        // Qui la rimuoviamo solo se l'utente torna indietro dal dashboard
+        if (overlayContainer.classList.contains('is-blurred') && !letteraBenvenuto.classList.contains('hidden')) {
+             // Non fare nulla, l'effetto rimane
+        } else {
+             overlayContainer.classList.remove('is-blurred');
+        }
     };
     
     // Evento per il cambio di sezione
