@@ -64,7 +64,17 @@ body {
   color: #111;
 }
 
-/* Contenitore Principale */
+/* Contenitore principale che gestisce la sfocatura */
+#overlay-container {
+    filter: none; /* Stili di base */
+    transition: filter 0.5s ease-in-out;
+}
+
+.is-blurred {
+    filter: blur(5px);
+}
+
+/* Contenitore Principale delle sezioni (Form e Dashboard) */
 .main-content {
   width: 100%;
   max-width: 840px;
@@ -259,12 +269,6 @@ button:hover {
 #lettera-benvenuto.hidden {
     opacity: 0;
     pointer-events: none;
-}
-
-/* Classe per la sfocatura applicata tramite JavaScript */
-.is-blurred {
-    filter: blur(5px);
-    transition: filter 0.5s ease-in-out;
 }
 
 /* Responsive del form */
