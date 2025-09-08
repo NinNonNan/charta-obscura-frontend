@@ -1,89 +1,90 @@
 <!DOCTYPE html>
 <html lang="it">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Charta Obscura</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..700&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    </head>
-    <body>
-    
-        <div class="fixed-header">
-            <button id="toggle-view">Vai alla Dashboard</button>
-        </div>
-    
-        <div id="form-container" class="main-content">
-            <div class="container">
-                <div class="form-container">
-                    <form id="anagrafica-form" novalidate>
-                        <h1>Charta Obscura</h1>
-                        <h2>Questo è un invito in: <span id="nome-societa-label"></span></h2>
-                        
-                        <label for="appellativo">Appellativo</label>
-                        <input type="text" id="appellativo" name="appellativo" required placeholder="Es. Conte, Contessa">
-                        
-                        <label for="nome">Nome Personaggio</label>
-                        <input type="text" id="nome" name="nome" required placeholder="Es. John">
-                        
-                        <label for="cognome">Cognome Personaggio</label>
-                        <input type="text" id="cognome" name="cognome" required placeholder="Es. Smith">
-                        
-                        <label for="alterego">Alter Ego</label>
-                        <input type="text" id="alterego" name="alterego" required placeholder="Es. Lord Blackwood">
-                        
-                        <label for="luogo_nascita">Luogo di Nascita</label>
-                        <input type="text" id="luogo_nascita" name="luogo_nascita" required placeholder="Es. Londra">
-                        
-                        <label for="data_nascita">Data di Nascita</label>
-                        <input type="text" id="data_nascita" name="data_nascita" value="01/01/1925" required>
-                        
-                        <label for="professione">Professione</label>
-                        <input type="text" id="professione" name="professione" required placeholder="Es. Investigatore">
-                        
-                        <label for="indirizzo">Indirizzo</label>
-                        <input type="text" id="indirizzo" name="indirizzo" required placeholder="Es. 10 Downing Street">
-                        
-                        <label for="note">Note Aggiuntive</label>
-                        <textarea id="note" name="note" placeholder="Inserisci qui le note..."></textarea>
-                        
-                        <button type="submit">Invia</button>
-                        
-                        <div id="form-response"></div>
-                    </form>
-                </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charta Obscura</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..700&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+
+    <div class="fixed-header">
+        <button id="toggle-view">Vai alla Dashboard</button>
+    </div>
+
+    <div id="form-container" class="main-content">
+        <div class="container">
+            <div class="form-container">
+                <form id="anagrafica-form" novalidate>
+                    <h1>Charta Obscura</h1>
+                    <h2>Questo è un invito in: <span id="nome-societa-label"></span></h2>
+                    
+                    <label for="appellativo">Appellativo</label>
+                    <input type="text" id="appellativo" name="appellativo" required placeholder="Es. Conte, Contessa">
+                    
+                    <label for="nome">Nome Personaggio</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Es. John">
+                    
+                    <label for="cognome">Cognome Personaggio</label>
+                    <input type="text" id="cognome" name="cognome" required placeholder="Es. Smith">
+                    
+                    <label for="alterego">Alter Ego</label>
+                    <input type="text" id="alterego" name="alterego" required placeholder="Es. Lord Blackwood">
+                    
+                    <label for="luogo_nascita">Luogo di Nascita</label>
+                    <input type="text" id="luogo_nascita" name="luogo_nascita" required placeholder="Es. Londra">
+                    
+                    <label for="data_nascita">Data di Nascita</label>
+                    <input type="text" id="data_nascita" name="data_nascita" value="01/01/1925" required>
+                    
+                    <label for="professione">Professione</label>
+                    <input type="text" id="professione" name="professione" required placeholder="Es. Investigatore">
+                    
+                    <label for="indirizzo">Indirizzo</label>
+                    <input type="text" id="indirizzo" name="indirizzo" required placeholder="Es. 10 Downing Street">
+                    
+                    <label for="note">Note Aggiuntive</label>
+                    <textarea id="note" name="note" placeholder="Inserisci qui le note..."></textarea>
+                    
+                    <button type="submit">Invia</button>
+                    
+                    <div id="form-response"></div>
+                </form>
             </div>
         </div>
-        
-        <div id="dashboard-content" class="main-content" style="display:none;">
-        </div>
-        <script src="script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
-        <script>
-          flatpickr("#data_nascita", {
-            locale: "it",
-            dateFormat: "d/m/Y",
-            defaultDate: "01/01/1925",
-            altInput: true,
-            altFormat: "d F Y",
-            "disableMobile": "true",
-            onReady: function(selectedDates, dateStr, instance) {
-                // Applica lo stile placeholder all'avvio
+    </div>
+    
+    <div id="dashboard-content" class="main-content" style="display:none;">
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
+    <script>
+      flatpickr("#data_nascita", {
+        locale: "it",
+        dateFormat: "d/m/Y",
+        defaultDate: "01/01/1925",
+        altInput: true,
+        altFormat: "d F Y",
+        "disableMobile": "true",
+        onReady: function(selectedDates, dateStr, instance) {
+            // Aggiunge lo stile placeholder all'input alternativo
+            instance.altInput.classList.add('placeholder-style');
+        },
+        onValueUpdate: function(selectedDates, dateStr, instance) {
+            // Rimuove lo stile placeholder quando viene aggiornato il valore
+            if (dateStr && dateStr !== "01/01/1925") {
+                instance.altInput.classList.remove('placeholder-style');
+            } else {
                 instance.altInput.classList.add('placeholder-style');
-            },
-            onClose: function(selectedDates, dateStr, instance) {
-                // Rimuove lo stile placeholder se l'utente seleziona una data
-                if (selectedDates.length > 0 && selectedDates[0].toISOString().split('T')[0] !== '1925-01-01') {
-                    instance.altInput.classList.remove('placeholder-style');
-                } else {
-                    instance.altInput.classList.add('placeholder-style');
-                }
             }
-          });
-        </script>
-    </body>
+        }
+      });
+    </script>
+</body>
 </html>
