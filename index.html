@@ -32,6 +32,9 @@
                     <label for="cognome">Cognome Personaggio</label>
                     <input type="text" id="cognome" name="cognome" required placeholder="Es. Smith">
                     
+                    <label for="alterego">Alter Ego</label>
+                    <input type="text" id="alterego" name="alterego" required placeholder="Es. Lord Blackwood">
+                    
                     <label for="luogo_nascita">Luogo di Nascita</label>
                     <input type="text" id="luogo_nascita" name="luogo_nascita" required placeholder="Es. Londra">
                     
@@ -58,71 +61,8 @@
     <div id="dashboard-content" class="main-content" style="display:none;">
     </div>
     
-    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
-    <script>
-      // URL del tuo script Google Apps, sostituisci con l'URL che hai ottenuto
-      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx16pHzWINf93vLVvtCT0oclr0bNfLVSoNDBU_Isa-dHvI5tAr7Cu-2r-nZKgpxoNni/exec'; 
-
-      const dataNascitaInput = document.getElementById('data_nascita');
-      const form = document.getElementById('anagrafica-form');
-      const formResponse = document.getElementById('form-response');
-
-      // Calcolo dinamico dell'anno e della data
-      const defaultYear = new Date().getFullYear() - 100;
-      const defaultPlaceholderDate = `01/01/${defaultYear}`;
-
-      flatpickr(dataNascitaInput, {
-        locale: "it",
-        dateFormat: "d/m/Y",
-        altInput: true,
-        altFormat: "d F Y",
-        "disableMobile": "true",
-        defaultDate: new Date(defaultYear, 0, 1),
-        onReady: function(selectedDates, dateStr, instance) {
-          instance.altInput.placeholder = defaultPlaceholderDate;
-          instance.altInput.classList.add('placeholder-style');
-          if (dateStr) {
-            instance.altInput.style.color = 'var(--text-dark)';
-            instance.altInput.style.fontStyle = 'normal';
-          }
-        },
-        onChange: function(selectedDates, dateStr, instance) {
-          if (selectedDates.length > 0) {
-            instance.altInput.classList.remove('placeholder-style');
-          } else {
-            instance.altInput.classList.add('placeholder-style');
-          }
-        }
-      });
-
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        formResponse.innerHTML = 'Invio in corso...';
-
-        // Raccoglie i dati del form
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-
-        // Invia i dati a Google Apps Script
-        fetch(SCRIPT_URL, {
-            method: 'POST',
-            body: new URLSearchParams(data),
-        })
-        .then(response => response.json())
-        .then(result => {
-            if (result.status === 'success') {
-                formResponse.innerHTML = `Dati inviati con successo! <br> Link alla cartella: <a href="${result.folderUrl}" target="_blank">${result.folderUrl}</a>`;
-                form.reset(); // Resetta il form
-            } else {
-                formResponse.innerHTML = `Errore: ${result.message}`;
-            }
-        })
-        .catch(error => {
-            formResponse.innerHTML = `Si è verificato un errore di rete: ${error}`;
-        });
-      });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
