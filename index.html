@@ -1,65 +1,69 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charta Obscura</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..700&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charta Obscura</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..700&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
 
-    <div class="fixed-header">
-        <button id="toggle-view">Vai alla Dashboard</button>
-    </div>
+    <div id="lettera-benvenuto">
+        <p>La tua intelligenza ti ha condotto qui, sei a un passo dal varcare la prima soglia verso un mondo più vasto.</p>
+    </div>
 
-    <div id="form-container" class="main-content">
-        <div class="container">
-            <div class="form-container">
-                <form id="anagrafica-form" novalidate>
-                    <h1>Charta Obscura</h1>
-                    <h2>Questo è un invito in: <span id="nome-societa-label"></span></h2>
-                    
-                    <label for="appellativo">Appellativo</label>
-                    <input type="text" id="appellativo" name="appellativo" required placeholder="Es. Conte, Contessa">
-                    
-                    <label for="nome">Nome Personaggio</label>
-                    <input type="text" id="nome" name="nome" required placeholder="Es. John">
-                    
-                    <label for="cognome">Cognome Personaggio</label>
-                    <input type="text" id="cognome" name="cognome" required placeholder="Es. Smith">
-                    
-                    <label for="luogo_nascita">Luogo di Nascita</label>
-                    <input type="text" id="luogo_nascita" name="luogo_nascita" required placeholder="Es. Londra">
-                    
-                    <label for="data_nascita">Data di Nascita</label>
-                    <input type="text" id="data_nascita" name="data_nascita" required>
-                    
-                    <label for="professione">Professione</label>
-                    <input type="text" id="professione" name="professione" required placeholder="Es. Investigatore">
-                    
-                    <label for="indirizzo">Indirizzo</label>
-                    <input type="text" id="indirizzo" name="indirizzo" required placeholder="Es. 10 Downing Street">
-                    
-                    <label for="note">Note Aggiuntive</label>
-                    <textarea id="note" name="note" placeholder="Inserisci qui le note..."></textarea>
-                    
-                    <button type="submit">Invia</button>
-                    
-                    <div id="form-response"></div>
-                </form>
-            </div>
-        </div>
-    </div>
-    
-    <div id="dashboard-content" class="main-content" style="display:none;">
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
-    <script src="script.js"></script>
+    <div class="fixed-header">
+        <button id="toggle-view">Vai alla Dashboard</button>
+    </div>
+
+    <div id="form-container" class="main-content">
+        <div class="container">
+            <div class="form-container">
+                <form id="anagrafica-form" novalidate>
+                    <h1>Charta Obscura</h1>
+                    <h2>Questo è un invito in: <span id="nome-societa-label"></span></h2>
+                    
+                    <label for="appellativo">Appellativo</label>
+                    <input type="text" id="appellativo" name="appellativo" required placeholder="Es. Conte, Contessa">
+                    
+                    <label for="nome">Nome Personaggio</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Es. John">
+                    
+                    <label for="cognome">Cognome Personaggio</label>
+                    <input type="text" id="cognome" name="cognome" required placeholder="Es. Smith">
+                    
+                    <label for="luogo_nascita">Luogo di Nascita</label>
+                    <input type="text" id="luogo_nascita" name="luogo_nascita" required placeholder="Es. Londra">
+                    
+                    <label for="data_nascita">Data di Nascita</label>
+                    <input type="text" id="data_nascita" name="data_nascita" required>
+                    
+                    <label for="professione">Professione</label>
+                    <input type="text" id="professione" name="professione" required placeholder="Es. Investigatore">
+                    
+                    <label for="indirizzo">Indirizzo</label>
+                    <input type="text" id="indirizzo" name="indirizzo" required placeholder="Es. 10 Downing Street">
+                    
+                    <label for="note">Note Aggiuntive</label>
+                    <textarea id="note" name="note" placeholder="Inserisci qui le note..."></textarea>
+                    
+                    <button type="submit">Invia</button>
+                    
+                    <div id="form-response"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div id="dashboard-content" class="main-content" style="display:none;">
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
