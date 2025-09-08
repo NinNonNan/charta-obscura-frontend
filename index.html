@@ -39,7 +39,7 @@
                     <input type="text" id="luogo_nascita" name="luogo_nascita" required placeholder="Es. Londra">
                     
                     <label for="data_nascita">Data di Nascita</label>
-                    <input type="text" id="data_nascita" name="data_nascita" value="01/01/1925" required>
+                    <input type="text" id="data_nascita" name="data_nascita" required>
                     
                     <label for="professione">Professione</label>
                     <input type="text" id="professione" name="professione" required placeholder="Es. Investigatore">
@@ -65,24 +65,32 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
     <script>
-      flatpickr("#data_nascita", {
+      const dataNascitaInput = document.getElementById('data_nascita');
+
+      const fp = flatpickr(dataNascitaInput, {
         locale: "it",
         dateFormat: "d/m/Y",
-        defaultDate: "01/01/1925",
         altInput: true,
         altFormat: "d F Y",
         "disableMobile": "true",
         onReady: function(selectedDates, dateStr, instance) {
-            // Aggiunge lo stile placeholder all'input alternativo
-            instance.altInput.classList.add('placeholder-style');
+          // Imposta il valore e lo stile di default all'avvio
+          instance.setDate("1925-01-01", false);
+          instance.altInput.classList.add('placeholder-style');
+          instance.altInput.style.color = '#a9a9a9';
+          instance.altInput.style.fontStyle = 'italic';
         },
-        onValueUpdate: function(selectedDates, dateStr, instance) {
-            // Rimuove lo stile placeholder quando viene aggiornato il valore
-            if (dateStr && dateStr !== "01/01/1925") {
-                instance.altInput.classList.remove('placeholder-style');
-            } else {
-                instance.altInput.classList.add('placeholder-style');
-            }
+        onChange: function(selectedDates, dateStr, instance) {
+          // Rimuove lo stile placeholder se l'utente seleziona una data valida
+          if (dateStr && dateStr !== "01/01/1925") {
+            instance.altInput.classList.remove('placeholder-style');
+            instance.altInput.style.color = 'var(--text-dark)';
+            instance.altInput.style.fontStyle = 'normal';
+          } else {
+            instance.altInput.classList.add('placeholder-style');
+            instance.altInput.style.color = '#a9a9a9';
+            instance.altInput.style.fontStyle = 'italic';
+          }
         }
       });
     </script>
