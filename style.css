@@ -277,12 +277,11 @@ button:hover {
   font-style: italic;
 }
 
-/* Stile per il testo del campo data dopo la selezione */
-.flatpickr-input[data-alt-input="true"].filled {
-  color: var(--text-dark);
-  font-style: normal;
+/* Stile per il testo del campo data come placeholder */
+.placeholder-style {
+  color: #a9a9a9 !important;
+  font-style: italic !important;
 }
-
 
 /* Modalità scura */
 @media screen and (prefers-color-scheme: dark) {
