@@ -6,11 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollerTitle = baseTitle + spacer;
     
     let scrollIndex = 0; 
-    let isScrolling = true;
+    let scrollInterval; // Variabile per tenere traccia dell'intervallo
 
     function scrollTitle() {
-        if (!isScrolling) return;
-        
         const newTitle = scrollerTitle.substring(scrollIndex) + scrollerTitle.substring(0, scrollIndex);
         document.title = newTitle;
         
@@ -22,14 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startScrolling() {
-        if (!isScrolling) {
-            isScrolling = true;
-            setInterval(scrollTitle, 300);
+        // Avvia l'intervallo solo se non è già in esecuzione
+        if (!scrollInterval) {
+            scrollInterval = setInterval(scrollTitle, 300);
         }
     }
     
     function stopScrolling() {
-        isScrolling = false;
+        // Ferma l'intervallo se è in esecuzione
+        clearInterval(scrollInterval);
+        scrollInterval = null;
     }
     
     document.addEventListener('visibilitychange', () => {
@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Avvia lo scorrimento all'inizio
     startScrolling();
     // ===== Fine della Funzione per il Titolo Scorrevole =====
 
