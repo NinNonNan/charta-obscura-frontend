@@ -34,16 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
             introContainer.style.display = 'block';
             toggleViewBtn.textContent = 'Vai all\'Invito';
             blurredBackgroundOverlay.classList.remove('is-blurred');
+            introContainer.classList.remove('hidden-at-start'); // Rimuove la classe solo se necessaria
         } else if (currentPage === 'form') {
             formContainer.style.display = 'block';
             toggleViewBtn.textContent = 'Vai alla Dashboard';
             letteraBenvenuto.style.display = 'block';
             blurredBackgroundOverlay.classList.add('is-blurred');
             formContainer.classList.add('is-blurred');
+            formContainer.classList.remove('hidden-at-start'); // Rimuove la classe solo se necessaria
+            letteraBenvenuto.classList.remove('hidden-at-start');
         } else if (currentPage === 'dashboard') {
             dashboardContainer.style.display = 'block';
             toggleViewBtn.textContent = 'Torna all\'Invito';
             blurredBackgroundOverlay.classList.remove('is-blurred');
+            dashboardContainer.classList.remove('hidden-at-start'); // Rimuove la classe solo se necessaria
         }
     };
 
