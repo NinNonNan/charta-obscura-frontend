@@ -124,7 +124,7 @@ body {
   transition: filter 0.5s ease-in-out;
 }
 
-/* Nuovo stile per il container introduttivo */
+/* Stile per il container introduttivo (con modifiche per il bordo) */
 .form-container.intro-style {
     background: #1a1a1a;
     border: 2px solid var(--gold);
@@ -135,11 +135,12 @@ body {
     color: #f1e6c9; /* Colore del testo per il container nero */
 }
 
+/* Modifica il colore del bordo delle decorazioni a 'var(--gold)' */
 .form-container:before,
 .form-container:after {
   content: "";
   position: absolute;
-  border: 2px solid #000;
+  border: 2px solid var(--gold);
   width: 30px;
   height: 30px;
 }
