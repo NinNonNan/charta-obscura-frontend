@@ -18,39 +18,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const nomeSocieta = urlParams.get('societa') || 'Codicillo di Turing';
     
-    // Al caricamento della pagina, applica le classi di sfocatura
-    blurredBackgroundOverlay.classList.add('is-blurred');
-    formContainer.classList.add('is-blurred');
-    introContainer.classList.add('is-blurred');
-    
-    // Gestione della navigazione tra le pagine
+    // Stato corrente della visualizzazione
     let currentPage = 'intro';
 
+    // Funzione per aggiornare la vista in base alla pagina corrente
     const updateView = () => {
-        // Nascondi tutte le sezioni principali
+        // Nascondi tutte le sezioni e il biglietto
         introContainer.style.display = 'none';
         formContainer.style.display = 'none';
         dashboardContainer.style.display = 'none';
+        letteraBenvenuto.style.display = 'none';
 
-        // Mostra la sezione corrente
+        // Mostra la sezione corrente e aggiorna il pulsante di navigazione
         if (currentPage === 'intro') {
             introContainer.style.display = 'block';
             toggleViewBtn.textContent = 'Vai all\'Invito';
+            blurredBackgroundOverlay.classList.remove('is-blurred');
         } else if (currentPage === 'form') {
             formContainer.style.display = 'block';
             toggleViewBtn.textContent = 'Vai alla Dashboard';
+            letteraBenvenuto.style.display = 'block';
+            blurredBackgroundOverlay.classList.add('is-blurred');
+            formContainer.classList.add('is-blurred');
         } else if (currentPage === 'dashboard') {
             dashboardContainer.style.display = 'block';
-            toggleViewBtn.textContent = 'Vai all\'Introduzione';
+            toggleViewBtn.textContent = 'Torna all\'Invito';
+            blurredBackgroundOverlay.classList.remove('is-blurred');
         }
     };
 
     // Evento per nascondere il biglietto e rimuovere la sfocatura
     if (letteraBenvenuto) {
         letteraBenvenuto.addEventListener('click', () => {
-            letteraBenvenuto.classList.add('hidden');
+            letteraBenvenuto.style.display = 'none';
             blurredBackgroundOverlay.classList.remove('is-blurred');
-            introContainer.classList.remove('is-blurred');
             formContainer.classList.remove('is-blurred');
         });
     }
@@ -67,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (currentPage === 'form') {
             currentPage = 'dashboard';
         } else if (currentPage === 'dashboard') {
-            currentPage = 'intro';
+            currentPage = 'form'; // Tornare al form se si è nella dashboard
         }
         updateView();
     });
