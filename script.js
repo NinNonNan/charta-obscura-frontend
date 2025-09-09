@@ -1,6 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // ===== Inizio della Funzione per il Titolo Scorrevole =====
+    const originalTitle = "Charta Obscura - Il Codicillo di Turing"; 
+    let scrollIndex = 0; 
+    let isScrolling = false;
+
+    function scrollTitle() {
+        if (!isScrolling) return;
+        
+        const newTitle = originalTitle.substring(scrollIndex) + originalTitle.substring(0, scrollIndex);
+        document.title = newTitle;
+        
+        scrollIndex++;
+        
+        if (scrollIndex >= originalTitle.length) {
+            scrollIndex = 0;
+        }
+    }
+
+    // Avvia lo scorrimento del titolo
+    function startScrolling() {
+        if (!isScrolling) {
+            isScrolling = true;
+            setInterval(scrollTitle, 300); // 300ms per la velocità di scorrimento
+        }
+    }
+    
+    // Ferma lo scorrimento del titolo
+    function stopScrolling() {
+        isScrolling = false;
+    }
+    
+    // Avvia lo scorrimento quando l'utente guarda la tab
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopScrolling();
+        } else {
+            startScrolling();
+        }
+    });
+
+    // Avvia lo scorrimento all'inizio
+    startScrolling();
+    // ===== Fine della Funzione per il Titolo Scorrevole =====
+    
     // URL del tuo script Google Apps
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx16pHzWINf93vLVvtCT0oclr0bNfLVSoNDBU_Isa-dHvI5tAr7Cu-2r-nZKgpxoNni/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx16pHzWINf93vLVvtCT0oclr0bNfLVSoNDBU-Isa-dHvI5tAr7Cu-2r-nZKgpxoNni/exec';
     
     // Riferimenti agli elementi principali
     const introContainer = document.getElementById('intro-content');
@@ -34,20 +79,20 @@ document.addEventListener('DOMContentLoaded', () => {
             introContainer.style.display = 'block';
             toggleViewBtn.textContent = 'Vai all\'Invito';
             blurredBackgroundOverlay.classList.remove('is-blurred');
-            introContainer.classList.remove('hidden-at-start'); // Rimuove la classe solo se necessaria
+            introContainer.classList.remove('hidden-at-start');
         } else if (currentPage === 'form') {
             formContainer.style.display = 'block';
             toggleViewBtn.textContent = 'Vai alla Dashboard';
             letteraBenvenuto.style.display = 'block';
             blurredBackgroundOverlay.classList.add('is-blurred');
             formContainer.classList.add('is-blurred');
-            formContainer.classList.remove('hidden-at-start'); // Rimuove la classe solo se necessaria
+            formContainer.classList.remove('hidden-at-start');
             letteraBenvenuto.classList.remove('hidden-at-start');
         } else if (currentPage === 'dashboard') {
             dashboardContainer.style.display = 'block';
             toggleViewBtn.textContent = 'Torna all\'Invito';
             blurredBackgroundOverlay.classList.remove('is-blurred');
-            dashboardContainer.classList.remove('hidden-at-start'); // Rimuove la classe solo se necessaria
+            dashboardContainer.classList.remove('hidden-at-start');
         }
     };
 
@@ -72,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (currentPage === 'form') {
             currentPage = 'dashboard';
         } else if (currentPage === 'dashboard') {
-            currentPage = 'form'; // Tornare al form se si è nella dashboard
+            currentPage = 'form';
         }
         updateView();
     });
