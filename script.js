@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx16pHzWINf93vLVvtCT0oclr0bNfLVSoNDBU_Isa-dHvI5tAr7Cu-2r-nZKgpxoNni/exec';
     
     // Riferimenti agli elementi principali
+    const introContainer = document.getElementById('intro-content');
     const formContainer = document.getElementById('form-container');
     const dashboardContainer = document.getElementById('dashboard-content');
     const blurredBackgroundOverlay = document.getElementById('blurred-background-overlay');
@@ -20,12 +21,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // Al caricamento della pagina, applica le classi di sfocatura
     blurredBackgroundOverlay.classList.add('is-blurred');
     formContainer.classList.add('is-blurred');
+    introContainer.classList.add('is-blurred');
+    
+    // Gestione della navigazione tra le pagine
+    let currentPage = 'intro';
+
+    const updateView = () => {
+        // Nascondi tutte le sezioni principali
+        introContainer.style.display = 'none';
+        formContainer.style.display = 'none';
+        dashboardContainer.style.display = 'none';
+
+        // Mostra la sezione corrente
+        if (currentPage === 'intro') {
+            introContainer.style.display = 'block';
+            toggleViewBtn.textContent = 'Vai all\'Invito';
+        } else if (currentPage === 'form') {
+            formContainer.style.display = 'block';
+            toggleViewBtn.textContent = 'Vai alla Dashboard';
+        } else if (currentPage === 'dashboard') {
+            dashboardContainer.style.display = 'block';
+            toggleViewBtn.textContent = 'Vai all\'Introduzione';
+        }
+    };
 
     // Evento per nascondere il biglietto e rimuovere la sfocatura
     if (letteraBenvenuto) {
         letteraBenvenuto.addEventListener('click', () => {
             letteraBenvenuto.classList.add('hidden');
             blurredBackgroundOverlay.classList.remove('is-blurred');
+            introContainer.classList.remove('is-blurred');
             formContainer.classList.remove('is-blurred');
         });
     }
@@ -34,47 +59,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (nomeSocietaLabel) {
         nomeSocietaLabel.textContent = nomeSocieta;
     }
-
-    // Funzione per mostrare la dashboard e nascondere il form
-    const showDashboard = () => {
-        formContainer.classList.add('hidden');
-        dashboardContainer.classList.remove('hidden');
-        blurredBackgroundOverlay.classList.remove('is-blurred');
-        formContainer.classList.remove('is-blurred');
-        letteraBenvenuto.classList.add('hidden');
-        toggleViewBtn.textContent = 'Vai al Form di Iscrizione';
-    };
     
-    // Funzione per mostrare il form e nascondere la dashboard
-    const showForm = () => {
-        dashboardContainer.classList.add('hidden');
-        formContainer.classList.remove('hidden');
-        
-        // Se il biglietto è ancora visibile (non cliccato), applica la sfocatura
-        if (!letteraBenvenuto.classList.contains('hidden')) {
-            blurredBackgroundOverlay.classList.add('is-blurred');
-            formContainer.classList.add('is-blurred');
-            letteraBenvenuto.classList.remove('hidden');
-        } else {
-            // Se il biglietto è già stato cliccato, mostra il form senza sfocatura
-            blurredBackgroundOverlay.classList.remove('is-blurred');
-            formContainer.classList.remove('is-blurred');
-            letteraBenvenuto.classList.add('hidden');
-        }
-        toggleViewBtn.textContent = 'Vai alla Dashboard';
-    };
-
-    // Aggiungi la classe hidden alla dashboard all'avvio per nasconderla
-    dashboardContainer.classList.add('hidden');
-    
-    // Evento per il cambio di sezione
+    // Aggiungi la logica di navigazione al click del pulsante
     toggleViewBtn.addEventListener('click', () => {
-        if (formContainer.classList.contains('hidden')) {
-            showForm();
-        } else {
-            showDashboard();
+        if (currentPage === 'intro') {
+            currentPage = 'form';
+        } else if (currentPage === 'form') {
+            currentPage = 'dashboard';
+        } else if (currentPage === 'dashboard') {
+            currentPage = 'intro';
         }
+        updateView();
     });
+
+    // Inizializza la vista iniziale
+    updateView();
 
     // Inizializzazione di Flatpickr
     const defaultYear = new Date().getFullYear() - 100;
