@@ -135,6 +135,16 @@ body {
     color: #f1e6c9; /* Colore del testo per il container nero */
 }
 
+/* Nuova regola per il margine tra le sezioni */
+.section-container {
+    margin-bottom: 2rem; /* Regola questo valore per più o meno spazio */
+}
+
+.form-container.intro-style .section-container:last-child {
+    margin-bottom: 0; /* Rimuove il margine dall'ultima sezione */
+}
+
+
 /* Modifica il colore del bordo delle decorazioni a 'var(--gold)' */
 .form-container:before,
 .form-container:after {
@@ -361,6 +371,15 @@ button:hover {
   .form-container:before,
   .form-container:after {
     display: none;
+  }
+  
+  /* Nuova regola per il margine tra le sezioni anche in mobile */
+  .section-container {
+      margin-bottom: 1.5rem;
+  }
+
+  .form-container.intro-style .section-container:last-child {
+      margin-bottom: 0;
   }
 
   h1 { font-size: 1.2rem; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
