@@ -124,6 +124,17 @@ body {
   transition: filter 0.5s ease-in-out;
 }
 
+/* Nuovo stile per il container introduttivo */
+.form-container.intro-style {
+    background: #1a1a1a;
+    border: 2px solid var(--gold);
+    color: #f1e6c9;
+}
+
+.form-container.intro-style h1, .form-container.intro-style p {
+    color: #f1e6c9; /* Colore del testo per il container nero */
+}
+
 .form-container:before,
 .form-container:after {
   content: "";
