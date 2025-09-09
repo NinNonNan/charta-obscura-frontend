@@ -9,7 +9,7 @@
 
 /* Evita scroll orizzontale su tutta la pagina */
 html, body {
-  overflow-x: hidden;
+  overflow: hidden;
   box-sizing: border-box;
 }
 
@@ -43,12 +43,16 @@ body {
     height: 100%;
     z-index: 1; /* Sotto l'header e il foglietto */
     background-color: #5c4a37;
-    background-image: repeating-conic-gradient(
+    background-image: url('assets/sfondo-vecchia-carta-pergamena.webp'),
+    repeating-conic-gradient(
       from 0deg,
       #7d6356 0% 10%,
       transparent 10% 20%
     );
-    background-size: 80px 80px;
+    background-size: cover, 80px 80px;
+    background-position: center, center;
+    background-repeat: no-repeat, repeat;
+    transition: filter 0.5s ease-in-out;
 }
 
 /* Header Fisso */
@@ -86,7 +90,9 @@ body {
 #content-container {
     position: relative;
     z-index: 5; /* Sopra l'overlay di sfondo, sotto il bigliettino */
-    padding-top: calc(75px + 2rem); 
+    padding-top: calc(75px + 2rem);
+    height: 100vh;
+    overflow-y: auto; /* Permette lo scorrimento del contenuto */
 }
 
 
@@ -213,7 +219,7 @@ button:hover {
   color: var(--text-dark);
 }
 
-.flatpickr-day.selected, 
+.flatpickr-day.selected,
 .flatpickr-day.selected:hover,
 .flatpickr-day.startRange,
 .flatpickr-day.endRange {
@@ -289,6 +295,11 @@ button:hover {
 
 /* Classe per nascondere gli elementi */
 .hidden {
+    display: none !important;
+}
+
+/* Classe per nascondere elementi all'avvio */
+.hidden-at-start {
     display: none !important;
 }
 
@@ -368,7 +379,8 @@ button:hover {
   }
   #blurred-background-overlay {
     background-color: #1a1a1a;
-    background-image: repeating-conic-gradient(
+    background-image: url('assets/sfondo-vecchia-carta-pergamena.webp'),
+    repeating-conic-gradient(
       from 0deg,
       #333 0% 10%,
       transparent 10% 20%
