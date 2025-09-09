@@ -1,37 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ===== Inizio della Funzione per il Titolo Scorrevole =====
-    const originalTitle = "Charta Obscura - Il Codicillo di Turing"; 
+    // ===== Funzione per il Titolo Scorrevole =====
+    const baseTitle = "Charta Obscura - Il Codicillo di Turing"; 
+    const spacer = " • ";
+    const scrollerTitle = baseTitle + spacer;
+    
     let scrollIndex = 0; 
-    let isScrolling = false;
+    let isScrolling = true;
 
     function scrollTitle() {
         if (!isScrolling) return;
         
-        const newTitle = originalTitle.substring(scrollIndex) + originalTitle.substring(0, scrollIndex);
+        const newTitle = scrollerTitle.substring(scrollIndex) + scrollerTitle.substring(0, scrollIndex);
         document.title = newTitle;
         
         scrollIndex++;
         
-        if (scrollIndex >= originalTitle.length) {
+        if (scrollIndex >= scrollerTitle.length) {
             scrollIndex = 0;
         }
     }
 
-    // Avvia lo scorrimento del titolo
     function startScrolling() {
         if (!isScrolling) {
             isScrolling = true;
-            setInterval(scrollTitle, 300); // 300ms per la velocità di scorrimento
+            setInterval(scrollTitle, 300);
         }
     }
     
-    // Ferma lo scorrimento del titolo
     function stopScrolling() {
         isScrolling = false;
     }
     
-    // Avvia lo scorrimento quando l'utente guarda la tab
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
             stopScrolling();
@@ -40,14 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Avvia lo scorrimento all'inizio
     startScrolling();
     // ===== Fine della Funzione per il Titolo Scorrevole =====
+
+    // ===== Riferimenti agli Elementi HTML e Variabili Globali =====
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx16pHzWINf93vLVvtCT0oclr0bNfLVSoNDBU_Isa-dHvI5tAr7Cu-2r-nZKgpxoNni/exec';
     
-    // URL del tuo script Google Apps
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx16pHzWINf93vLVvtCT0oclr0bNfLVSoNDBU-Isa-dHvI5tAr7Cu-2r-nZKgpxoNni/exec';
-    
-    // Riferimenti agli elementi principali
     const introContainer = document.getElementById('intro-content');
     const formContainer = document.getElementById('form-container');
     const dashboardContainer = document.getElementById('dashboard-content');
@@ -59,14 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const formResponse = document.getElementById('form-response');
     const letteraBenvenuto = document.getElementById('lettera-benvenuto');
     
-    // Funzione per estrarre il parametro 'societa' dall'URL
     const urlParams = new URLSearchParams(window.location.search);
     const nomeSocieta = urlParams.get('societa') || 'Codicillo di Turing';
     
-    // Stato corrente della visualizzazione
     let currentPage = 'intro';
 
-    // Funzione per aggiornare la vista in base alla pagina corrente
+    // ===== Funzioni per la Gestione della Vista =====
     const updateView = () => {
         // Nascondi tutte le sezioni e il biglietto
         introContainer.style.display = 'none';
@@ -74,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         dashboardContainer.style.display = 'none';
         letteraBenvenuto.style.display = 'none';
 
-        // Mostra la sezione corrente e aggiorna il pulsante di navigazione
         if (currentPage === 'intro') {
             introContainer.style.display = 'block';
             toggleViewBtn.textContent = 'Vai all\'Invito';
@@ -96,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Evento per nascondere il biglietto e rimuovere la sfocatura
+    // ===== Listener per Eventi =====
     if (letteraBenvenuto) {
         letteraBenvenuto.addEventListener('click', () => {
             letteraBenvenuto.style.display = 'none';
@@ -105,12 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Aggiorna il testo del sottotitolo con il nome della società
     if (nomeSocietaLabel) {
         nomeSocietaLabel.textContent = nomeSocieta;
     }
     
-    // Aggiungi la logica di navigazione al click del pulsante
     toggleViewBtn.addEventListener('click', () => {
         if (currentPage === 'intro') {
             currentPage = 'form';
@@ -122,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateView();
     });
 
-    // Inizializza la vista iniziale
+    // ===== Inizializzazione e Logica Principale =====
     updateView();
 
     // Inizializzazione di Flatpickr
