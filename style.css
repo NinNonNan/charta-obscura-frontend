@@ -137,7 +137,7 @@ body {
 
 /* Nuova regola per il margine tra le sezioni */
 .section-container {
-    margin-bottom: 2rem; /* Regola questo valore per più o meno spazio */
+    margin-bottom: 4rem; /* Regola questo valore per più o meno spazio */
 }
 
 .form-container.intro-style .section-container:last-child {
