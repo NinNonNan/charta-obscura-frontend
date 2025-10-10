@@ -63,39 +63,49 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let currentPage = 'intro';
 
+    // ===== Funzioni di Utilità =====
+    const setElementVisibility = (element, isVisible) => {
+        if (element) {
+            element.style.display = isVisible ? 'block' : 'none';
+            if (isVisible) {
+                element.classList.remove('hidden-at-start');
+            }
+        }
+    };
+
     // ===== Funzioni per la Gestione della Vista =====
     const updateView = () => {
-        // Nascondi tutte le sezioni e il biglietto
-        introContainer.style.display = 'none';
-        formContainer.style.display = 'none';
-        dashboardContainer.style.display = 'none';
-        letteraBenvenuto.style.display = 'none';
+        const views = {
+            intro: introContainer,
+            form: formContainer,
+            dashboard: dashboardContainer
+        };
 
-        if (currentPage === 'intro') {
-            introContainer.style.display = 'block';
-            toggleViewBtn.textContent = 'Vai all\'Invito';
-            blurredBackgroundOverlay.classList.remove('is-blurred');
-            introContainer.classList.remove('hidden-at-start');
-        } else if (currentPage === 'form') {
-            formContainer.style.display = 'block';
-            toggleViewBtn.textContent = 'Vai alla Dashboard';
-            letteraBenvenuto.style.display = 'block';
-            blurredBackgroundOverlay.classList.add('is-blurred');
-            formContainer.classList.add('is-blurred');
-            formContainer.classList.remove('hidden-at-start');
-            letteraBenvenuto.classList.remove('hidden-at-start');
-        } else if (currentPage === 'dashboard') {
-            dashboardContainer.style.display = 'block';
-            toggleViewBtn.textContent = 'Torna all\'Invito';
-            blurredBackgroundOverlay.classList.remove('is-blurred');
-            dashboardContainer.classList.remove('hidden-at-start');
+        // Nascondi tutte le viste principali
+        Object.values(views).forEach(view => setElementVisibility(view, false));
+
+        // Mostra la vista corrente
+        setElementVisibility(views[currentPage], true);
+
+        // Aggiorna elementi specifici in base alla vista
+        const isFormPage = currentPage === 'form';
+        setElementVisibility(letteraBenvenuto, isFormPage);
+        blurredBackgroundOverlay.classList.toggle('is-blurred', isFormPage);
+        formContainer.classList.toggle('is-blurred', isFormPage);
+
+        // Aggiorna il testo del bottone
+        const buttonTextMap = {
+            intro: 'Vai all\'Invito',
+            form: 'Vai alla Dashboard',
+            dashboard: 'Torna all\'Invito'
         }
+        toggleViewBtn.textContent = buttonTextMap[currentPage];
     };
 
     // ===== Listener per Eventi =====
     if (letteraBenvenuto) {
         letteraBenvenuto.addEventListener('click', () => {
-            letteraBenvenuto.style.display = 'none';
+            setElementVisibility(letteraBenvenuto, false);
             blurredBackgroundOverlay.classList.remove('is-blurred');
             formContainer.classList.remove('is-blurred');
         });
