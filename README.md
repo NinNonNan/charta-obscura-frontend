@@ -47,7 +47,7 @@ Per avviare lo sviluppo locale, assicurati di avere:
 ### 🔗 Link Utili
 
 * **[Repository Backend su Google Apps Script]**
-* **[Sito Web Pubblicato su Netlify]**
+* **[Sito Web Pubblicato su Netlify](https://charta-obscura.netlify.app/)**
 
 ---
 ### Contatti
